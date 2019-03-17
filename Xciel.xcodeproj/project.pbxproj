@@ -12,6 +12,10 @@
 		C4AC9703223E8B3000BEE085 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4AC9701223E8B3000BEE085 /* MainMenu.xib */; };
 		C4AC970F223E8B3000BEE085 /* XcielTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AC970E223E8B3000BEE085 /* XcielTests.swift */; };
 		C4AC971A223E8B3000BEE085 /* XcielUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AC9719223E8B3000BEE085 /* XcielUITests.swift */; };
+		C4AC972E223E8B3700BEE085 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4AC972D223E8B3700BEE085 /* Cocoa.framework */; };
+		C4AC9731223E8B3700BEE085 /* SourceEditorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AC9730223E8B3700BEE085 /* SourceEditorExtension.swift */; };
+		C4AC9733223E8B3700BEE085 /* SourceEditorCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AC9732223E8B3700BEE085 /* SourceEditorCommand.swift */; };
+		C4AC9738223E8B3700BEE085 /* Xciel Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = C4AC972B223E8B3700BEE085 /* Xciel Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,7 +33,28 @@
 			remoteGlobalIDString = C4AC96F9223E8B2F00BEE085;
 			remoteInfo = Xciel;
 		};
+		C4AC9736223E8B3700BEE085 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C4AC96F2223E8B2F00BEE085 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C4AC972A223E8B3700BEE085;
+			remoteInfo = "Xciel Extension";
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		C4AC973C223E8B3700BEE085 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				C4AC9738223E8B3700BEE085 /* Xciel Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		C4AC96FA223E8B2F00BEE085 /* Xciel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Xciel.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -44,6 +69,12 @@
 		C4AC9715223E8B3000BEE085 /* XcielUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = XcielUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4AC9719223E8B3000BEE085 /* XcielUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XcielUITests.swift; sourceTree = "<group>"; };
 		C4AC971B223E8B3000BEE085 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C4AC972B223E8B3700BEE085 /* Xciel Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Xciel Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C4AC972D223E8B3700BEE085 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		C4AC9730223E8B3700BEE085 /* SourceEditorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceEditorExtension.swift; sourceTree = "<group>"; };
+		C4AC9732223E8B3700BEE085 /* SourceEditorCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceEditorCommand.swift; sourceTree = "<group>"; };
+		C4AC9734223E8B3700BEE085 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C4AC9735223E8B3700BEE085 /* Xciel_Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Xciel_Extension.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +99,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		C4AC9728223E8B3700BEE085 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C4AC972E223E8B3700BEE085 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -77,6 +116,8 @@
 				C4AC96FC223E8B2F00BEE085 /* Xciel */,
 				C4AC970D223E8B3000BEE085 /* XcielTests */,
 				C4AC9718223E8B3000BEE085 /* XcielUITests */,
+				C4AC972F223E8B3700BEE085 /* Xciel Extension */,
+				C4AC972C223E8B3700BEE085 /* Frameworks */,
 				C4AC96FB223E8B2F00BEE085 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -87,6 +128,7 @@
 				C4AC96FA223E8B2F00BEE085 /* Xciel.app */,
 				C4AC970A223E8B3000BEE085 /* XcielTests.xctest */,
 				C4AC9715223E8B3000BEE085 /* XcielUITests.xctest */,
+				C4AC972B223E8B3700BEE085 /* Xciel Extension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -121,6 +163,25 @@
 			path = XcielUITests;
 			sourceTree = "<group>";
 		};
+		C4AC972C223E8B3700BEE085 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C4AC972D223E8B3700BEE085 /* Cocoa.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C4AC972F223E8B3700BEE085 /* Xciel Extension */ = {
+			isa = PBXGroup;
+			children = (
+				C4AC9730223E8B3700BEE085 /* SourceEditorExtension.swift */,
+				C4AC9732223E8B3700BEE085 /* SourceEditorCommand.swift */,
+				C4AC9734223E8B3700BEE085 /* Info.plist */,
+				C4AC9735223E8B3700BEE085 /* Xciel_Extension.entitlements */,
+			);
+			path = "Xciel Extension";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -131,10 +192,12 @@
 				C4AC96F6223E8B2F00BEE085 /* Sources */,
 				C4AC96F7223E8B2F00BEE085 /* Frameworks */,
 				C4AC96F8223E8B2F00BEE085 /* Resources */,
+				C4AC973C223E8B3700BEE085 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				C4AC9737223E8B3700BEE085 /* PBXTargetDependency */,
 			);
 			name = Xciel;
 			productName = Xciel;
@@ -177,6 +240,23 @@
 			productReference = C4AC9715223E8B3000BEE085 /* XcielUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		C4AC972A223E8B3700BEE085 /* Xciel Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C4AC9739223E8B3700BEE085 /* Build configuration list for PBXNativeTarget "Xciel Extension" */;
+			buildPhases = (
+				C4AC9727223E8B3700BEE085 /* Sources */,
+				C4AC9728223E8B3700BEE085 /* Frameworks */,
+				C4AC9729223E8B3700BEE085 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Xciel Extension";
+			productName = "Xciel Extension";
+			productReference = C4AC972B223E8B3700BEE085 /* Xciel Extension.appex */;
+			productType = "com.apple.product-type.xcode-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -198,6 +278,9 @@
 						CreatedOnToolsVersion = 10.1;
 						TestTargetID = C4AC96F9223E8B2F00BEE085;
 					};
+					C4AC972A223E8B3700BEE085 = {
+						CreatedOnToolsVersion = 10.1;
+					};
 				};
 			};
 			buildConfigurationList = C4AC96F5223E8B2F00BEE085 /* Build configuration list for PBXProject "Xciel" */;
@@ -216,6 +299,7 @@
 				C4AC96F9223E8B2F00BEE085 /* Xciel */,
 				C4AC9709223E8B3000BEE085 /* XcielTests */,
 				C4AC9714223E8B3000BEE085 /* XcielUITests */,
+				C4AC972A223E8B3700BEE085 /* Xciel Extension */,
 			);
 		};
 /* End PBXProject section */
@@ -238,6 +322,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		C4AC9713223E8B3000BEE085 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C4AC9729223E8B3700BEE085 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -271,6 +362,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		C4AC9727223E8B3700BEE085 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C4AC9731223E8B3700BEE085 /* SourceEditorExtension.swift in Sources */,
+				C4AC9733223E8B3700BEE085 /* SourceEditorCommand.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -283,6 +383,11 @@
 			isa = PBXTargetDependency;
 			target = C4AC96F9223E8B2F00BEE085 /* Xciel */;
 			targetProxy = C4AC9716223E8B3000BEE085 /* PBXContainerItemProxy */;
+		};
+		C4AC9737223E8B3700BEE085 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C4AC972A223E8B3700BEE085 /* Xciel Extension */;
+			targetProxy = C4AC9736223E8B3700BEE085 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -416,6 +521,7 @@
 		C4AC971F223E8B3000BEE085 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Xciel/Xciel.entitlements;
 				CODE_SIGN_STYLE = Automatic;
@@ -435,6 +541,7 @@
 		C4AC9720223E8B3000BEE085 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Xciel/Xciel.entitlements;
 				CODE_SIGN_STYLE = Automatic;
@@ -533,6 +640,46 @@
 			};
 			name = Release;
 		};
+		C4AC973A223E8B3700BEE085 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "Xciel Extension/Xciel_Extension.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 9T4USX98DB;
+				INFOPLIST_FILE = "Xciel Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "Takuma-Matsushita.Xciel.Xciel-Extension";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
+			};
+			name = Debug;
+		};
+		C4AC973B223E8B3700BEE085 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "Xciel Extension/Xciel_Extension.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 9T4USX98DB;
+				INFOPLIST_FILE = "Xciel Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "Takuma-Matsushita.Xciel.Xciel-Extension";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -568,6 +715,15 @@
 			buildConfigurations = (
 				C4AC9725223E8B3000BEE085 /* Debug */,
 				C4AC9726223E8B3000BEE085 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C4AC9739223E8B3700BEE085 /* Build configuration list for PBXNativeTarget "Xciel Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C4AC973A223E8B3700BEE085 /* Debug */,
+				C4AC973B223E8B3700BEE085 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
