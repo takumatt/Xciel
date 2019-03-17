@@ -9,12 +9,66 @@
 import Foundation
 import XcodeKit
 
-class SourceEditorCommand: NSObject, XCSourceEditorCommand {
+
+class XcielDeleteRegionCommand: NSObject, XCSourceEditorCommand {
     
     func perform(with invocation: XCSourceEditorCommandInvocation, completionHandler: @escaping (Error?) -> Void ) -> Void {
-        // Implement your command here, invoking the completion handler when done. Pass it nil on success, and an NSError on failure.
+        
+        guard let pos = invocation.buffer.currentPosition() else {
+            return completionHandler(nil)
+        }
+        
+        let cielBuffer = XcielSourceTextBuffer(original: invocation.buffer, position: pos)
+        
+        if let range = cielBuffer.cielerSearcher() {
+            
+            // kill region
+            
+            invocation.buffer.killNicely(range: range, exceptStartEndLine: true, in: cielBuffer)
+        }
         
         completionHandler(nil)
     }
+}
+
+class XcielCommentOutRegionCommand: NSObject, XCSourceEditorCommand {
     
+    func perform(with invocation: XCSourceEditorCommandInvocation, completionHandler: @escaping (Error?) -> Void ) -> Void {
+        
+        guard let pos = invocation.buffer.currentPosition() else {
+            return completionHandler(nil)
+        }
+        
+        let cielBuffer = XcielSourceTextBuffer(original: invocation.buffer, position: pos)
+        
+        if let range = cielBuffer.cielerSearcher() {
+            
+            // comment out
+            
+            invocation.buffer.commentOut(range: range, in: cielBuffer)
+        }
+        
+        completionHandler(nil)
+    }
+}
+
+class XcielSelectRegionCommand: NSObject, XCSourceEditorCommand {
+    
+    func perform(with invocation: XCSourceEditorCommandInvocation, completionHandler: @escaping (Error?) -> Void ) -> Void {
+        
+        guard let pos = invocation.buffer.currentPosition() else {
+            return completionHandler(nil)
+        }
+        
+        let cielBuffer = XcielSourceTextBuffer(original: invocation.buffer, position: pos)
+        
+        if let range = cielBuffer.cielerSearcher() {
+            
+            // select region
+            
+            invocation.buffer.select(range: range)
+        }
+        
+        completionHandler(nil)
+    }
 }

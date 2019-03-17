@@ -16,6 +16,10 @@
 		C4AC9731223E8B3700BEE085 /* SourceEditorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AC9730223E8B3700BEE085 /* SourceEditorExtension.swift */; };
 		C4AC9733223E8B3700BEE085 /* SourceEditorCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AC9732223E8B3700BEE085 /* SourceEditorCommand.swift */; };
 		C4AC9738223E8B3700BEE085 /* Xciel Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = C4AC972B223E8B3700BEE085 /* Xciel Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		C4AC973E223E8B9000BEE085 /* XCSourceTextBuffer+Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AC973D223E8B9000BEE085 /* XCSourceTextBuffer+Util.swift */; };
+		C4AC9740223E8BB300BEE085 /* XcielSourceTextBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AC973F223E8BB300BEE085 /* XcielSourceTextBuffer.swift */; };
+		C4AC9742223E8BD400BEE085 /* XCSourceTextPosition+Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AC9741223E8BD400BEE085 /* XCSourceTextPosition+Util.swift */; };
+		C4AC9744223E8BF800BEE085 /* Stack.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AC9743223E8BF800BEE085 /* Stack.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +79,10 @@
 		C4AC9732223E8B3700BEE085 /* SourceEditorCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceEditorCommand.swift; sourceTree = "<group>"; };
 		C4AC9734223E8B3700BEE085 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C4AC9735223E8B3700BEE085 /* Xciel_Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Xciel_Extension.entitlements; sourceTree = "<group>"; };
+		C4AC973D223E8B9000BEE085 /* XCSourceTextBuffer+Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCSourceTextBuffer+Util.swift"; sourceTree = "<group>"; };
+		C4AC973F223E8BB300BEE085 /* XcielSourceTextBuffer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XcielSourceTextBuffer.swift; sourceTree = "<group>"; };
+		C4AC9741223E8BD400BEE085 /* XCSourceTextPosition+Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCSourceTextPosition+Util.swift"; sourceTree = "<group>"; };
+		C4AC9743223E8BF800BEE085 /* Stack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stack.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -176,6 +184,10 @@
 			children = (
 				C4AC9730223E8B3700BEE085 /* SourceEditorExtension.swift */,
 				C4AC9732223E8B3700BEE085 /* SourceEditorCommand.swift */,
+				C4AC973D223E8B9000BEE085 /* XCSourceTextBuffer+Util.swift */,
+				C4AC973F223E8BB300BEE085 /* XcielSourceTextBuffer.swift */,
+				C4AC9741223E8BD400BEE085 /* XCSourceTextPosition+Util.swift */,
+				C4AC9743223E8BF800BEE085 /* Stack.swift */,
 				C4AC9734223E8B3700BEE085 /* Info.plist */,
 				C4AC9735223E8B3700BEE085 /* Xciel_Extension.entitlements */,
 			);
@@ -367,7 +379,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				C4AC9731223E8B3700BEE085 /* SourceEditorExtension.swift in Sources */,
+				C4AC973E223E8B9000BEE085 /* XCSourceTextBuffer+Util.swift in Sources */,
 				C4AC9733223E8B3700BEE085 /* SourceEditorCommand.swift in Sources */,
+				C4AC9742223E8BD400BEE085 /* XCSourceTextPosition+Util.swift in Sources */,
+				C4AC9744223E8BF800BEE085 /* Stack.swift in Sources */,
+				C4AC9740223E8BB300BEE085 /* XcielSourceTextBuffer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
