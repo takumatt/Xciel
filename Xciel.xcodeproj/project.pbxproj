@@ -1,0 +1,578 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		C4AC96FE223E8B2F00BEE085 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AC96FD223E8B2F00BEE085 /* AppDelegate.swift */; };
+		C4AC9700223E8B3000BEE085 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C4AC96FF223E8B3000BEE085 /* Assets.xcassets */; };
+		C4AC9703223E8B3000BEE085 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4AC9701223E8B3000BEE085 /* MainMenu.xib */; };
+		C4AC970F223E8B3000BEE085 /* XcielTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AC970E223E8B3000BEE085 /* XcielTests.swift */; };
+		C4AC971A223E8B3000BEE085 /* XcielUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AC9719223E8B3000BEE085 /* XcielUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		C4AC970B223E8B3000BEE085 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C4AC96F2223E8B2F00BEE085 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C4AC96F9223E8B2F00BEE085;
+			remoteInfo = Xciel;
+		};
+		C4AC9716223E8B3000BEE085 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C4AC96F2223E8B2F00BEE085 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C4AC96F9223E8B2F00BEE085;
+			remoteInfo = Xciel;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		C4AC96FA223E8B2F00BEE085 /* Xciel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Xciel.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C4AC96FD223E8B2F00BEE085 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		C4AC96FF223E8B3000BEE085 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		C4AC9702223E8B3000BEE085 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		C4AC9704223E8B3000BEE085 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C4AC9705223E8B3000BEE085 /* Xciel.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Xciel.entitlements; sourceTree = "<group>"; };
+		C4AC970A223E8B3000BEE085 /* XcielTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = XcielTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C4AC970E223E8B3000BEE085 /* XcielTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XcielTests.swift; sourceTree = "<group>"; };
+		C4AC9710223E8B3000BEE085 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C4AC9715223E8B3000BEE085 /* XcielUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = XcielUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C4AC9719223E8B3000BEE085 /* XcielUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XcielUITests.swift; sourceTree = "<group>"; };
+		C4AC971B223E8B3000BEE085 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		C4AC96F7223E8B2F00BEE085 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C4AC9707223E8B3000BEE085 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C4AC9712223E8B3000BEE085 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		C4AC96F1223E8B2F00BEE085 = {
+			isa = PBXGroup;
+			children = (
+				C4AC96FC223E8B2F00BEE085 /* Xciel */,
+				C4AC970D223E8B3000BEE085 /* XcielTests */,
+				C4AC9718223E8B3000BEE085 /* XcielUITests */,
+				C4AC96FB223E8B2F00BEE085 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		C4AC96FB223E8B2F00BEE085 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C4AC96FA223E8B2F00BEE085 /* Xciel.app */,
+				C4AC970A223E8B3000BEE085 /* XcielTests.xctest */,
+				C4AC9715223E8B3000BEE085 /* XcielUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C4AC96FC223E8B2F00BEE085 /* Xciel */ = {
+			isa = PBXGroup;
+			children = (
+				C4AC96FD223E8B2F00BEE085 /* AppDelegate.swift */,
+				C4AC96FF223E8B3000BEE085 /* Assets.xcassets */,
+				C4AC9701223E8B3000BEE085 /* MainMenu.xib */,
+				C4AC9704223E8B3000BEE085 /* Info.plist */,
+				C4AC9705223E8B3000BEE085 /* Xciel.entitlements */,
+			);
+			path = Xciel;
+			sourceTree = "<group>";
+		};
+		C4AC970D223E8B3000BEE085 /* XcielTests */ = {
+			isa = PBXGroup;
+			children = (
+				C4AC970E223E8B3000BEE085 /* XcielTests.swift */,
+				C4AC9710223E8B3000BEE085 /* Info.plist */,
+			);
+			path = XcielTests;
+			sourceTree = "<group>";
+		};
+		C4AC9718223E8B3000BEE085 /* XcielUITests */ = {
+			isa = PBXGroup;
+			children = (
+				C4AC9719223E8B3000BEE085 /* XcielUITests.swift */,
+				C4AC971B223E8B3000BEE085 /* Info.plist */,
+			);
+			path = XcielUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		C4AC96F9223E8B2F00BEE085 /* Xciel */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C4AC971E223E8B3000BEE085 /* Build configuration list for PBXNativeTarget "Xciel" */;
+			buildPhases = (
+				C4AC96F6223E8B2F00BEE085 /* Sources */,
+				C4AC96F7223E8B2F00BEE085 /* Frameworks */,
+				C4AC96F8223E8B2F00BEE085 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Xciel;
+			productName = Xciel;
+			productReference = C4AC96FA223E8B2F00BEE085 /* Xciel.app */;
+			productType = "com.apple.product-type.application";
+		};
+		C4AC9709223E8B3000BEE085 /* XcielTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C4AC9721223E8B3000BEE085 /* Build configuration list for PBXNativeTarget "XcielTests" */;
+			buildPhases = (
+				C4AC9706223E8B3000BEE085 /* Sources */,
+				C4AC9707223E8B3000BEE085 /* Frameworks */,
+				C4AC9708223E8B3000BEE085 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C4AC970C223E8B3000BEE085 /* PBXTargetDependency */,
+			);
+			name = XcielTests;
+			productName = XcielTests;
+			productReference = C4AC970A223E8B3000BEE085 /* XcielTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		C4AC9714223E8B3000BEE085 /* XcielUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C4AC9724223E8B3000BEE085 /* Build configuration list for PBXNativeTarget "XcielUITests" */;
+			buildPhases = (
+				C4AC9711223E8B3000BEE085 /* Sources */,
+				C4AC9712223E8B3000BEE085 /* Frameworks */,
+				C4AC9713223E8B3000BEE085 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C4AC9717223E8B3000BEE085 /* PBXTargetDependency */,
+			);
+			name = XcielUITests;
+			productName = XcielUITests;
+			productReference = C4AC9715223E8B3000BEE085 /* XcielUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		C4AC96F2223E8B2F00BEE085 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1010;
+				LastUpgradeCheck = 1010;
+				ORGANIZATIONNAME = "Takuma Matsushita";
+				TargetAttributes = {
+					C4AC96F9223E8B2F00BEE085 = {
+						CreatedOnToolsVersion = 10.1;
+					};
+					C4AC9709223E8B3000BEE085 = {
+						CreatedOnToolsVersion = 10.1;
+						TestTargetID = C4AC96F9223E8B2F00BEE085;
+					};
+					C4AC9714223E8B3000BEE085 = {
+						CreatedOnToolsVersion = 10.1;
+						TestTargetID = C4AC96F9223E8B2F00BEE085;
+					};
+				};
+			};
+			buildConfigurationList = C4AC96F5223E8B2F00BEE085 /* Build configuration list for PBXProject "Xciel" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = C4AC96F1223E8B2F00BEE085;
+			productRefGroup = C4AC96FB223E8B2F00BEE085 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C4AC96F9223E8B2F00BEE085 /* Xciel */,
+				C4AC9709223E8B3000BEE085 /* XcielTests */,
+				C4AC9714223E8B3000BEE085 /* XcielUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		C4AC96F8223E8B2F00BEE085 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C4AC9700223E8B3000BEE085 /* Assets.xcassets in Resources */,
+				C4AC9703223E8B3000BEE085 /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C4AC9708223E8B3000BEE085 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C4AC9713223E8B3000BEE085 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C4AC96F6223E8B2F00BEE085 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C4AC96FE223E8B2F00BEE085 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C4AC9706223E8B3000BEE085 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C4AC970F223E8B3000BEE085 /* XcielTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C4AC9711223E8B3000BEE085 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C4AC971A223E8B3000BEE085 /* XcielUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		C4AC970C223E8B3000BEE085 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C4AC96F9223E8B2F00BEE085 /* Xciel */;
+			targetProxy = C4AC970B223E8B3000BEE085 /* PBXContainerItemProxy */;
+		};
+		C4AC9717223E8B3000BEE085 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C4AC96F9223E8B2F00BEE085 /* Xciel */;
+			targetProxy = C4AC9716223E8B3000BEE085 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		C4AC9701223E8B3000BEE085 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C4AC9702223E8B3000BEE085 /* Base */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		C4AC971C223E8B3000BEE085 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		C4AC971D223E8B3000BEE085 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		C4AC971F223E8B3000BEE085 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Xciel/Xciel.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 9T4USX98DB;
+				INFOPLIST_FILE = Xciel/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "Takuma-Matsushita.Xciel";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+			};
+			name = Debug;
+		};
+		C4AC9720223E8B3000BEE085 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Xciel/Xciel.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 9T4USX98DB;
+				INFOPLIST_FILE = Xciel/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "Takuma-Matsushita.Xciel";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+			};
+			name = Release;
+		};
+		C4AC9722223E8B3000BEE085 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 9T4USX98DB;
+				INFOPLIST_FILE = XcielTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "Takuma-Matsushita.XcielTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Xciel.app/Contents/MacOS/Xciel";
+			};
+			name = Debug;
+		};
+		C4AC9723223E8B3000BEE085 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 9T4USX98DB;
+				INFOPLIST_FILE = XcielTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "Takuma-Matsushita.XcielTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Xciel.app/Contents/MacOS/Xciel";
+			};
+			name = Release;
+		};
+		C4AC9725223E8B3000BEE085 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 9T4USX98DB;
+				INFOPLIST_FILE = XcielUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "Takuma-Matsushita.XcielUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TEST_TARGET_NAME = Xciel;
+			};
+			name = Debug;
+		};
+		C4AC9726223E8B3000BEE085 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 9T4USX98DB;
+				INFOPLIST_FILE = XcielUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "Takuma-Matsushita.XcielUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TEST_TARGET_NAME = Xciel;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C4AC96F5223E8B2F00BEE085 /* Build configuration list for PBXProject "Xciel" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C4AC971C223E8B3000BEE085 /* Debug */,
+				C4AC971D223E8B3000BEE085 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C4AC971E223E8B3000BEE085 /* Build configuration list for PBXNativeTarget "Xciel" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C4AC971F223E8B3000BEE085 /* Debug */,
+				C4AC9720223E8B3000BEE085 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C4AC9721223E8B3000BEE085 /* Build configuration list for PBXNativeTarget "XcielTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C4AC9722223E8B3000BEE085 /* Debug */,
+				C4AC9723223E8B3000BEE085 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C4AC9724223E8B3000BEE085 /* Build configuration list for PBXNativeTarget "XcielUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C4AC9725223E8B3000BEE085 /* Debug */,
+				C4AC9726223E8B3000BEE085 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = C4AC96F2223E8B2F00BEE085 /* Project object */;
+}
