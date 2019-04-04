@@ -10,40 +10,31 @@ import Foundation
 
 extension String {
     
-    func isCommented() -> Bool {
+    func commentPrefixRange() -> Range<String.Index>? {
         
-        let pattern = "^[ \t\n\r]+\\/\\/.*"
+        let pattern = #"//"#
         
-        guard let regexp = try? NSRegularExpression(pattern: pattern, options: []) else {
-            return false
-        }
-        
-        let matches = regexp.matches(in: self, options: [], range: NSRange(location: 0, length: self.count))
-        
-        // XXX: this codes doesn't work, it also should be used the following code since swift 5.
-        // self.range(of: #"=t"#, options: .regularExpression)
-        
-        print(matches)
-        
-        if matches.count > 0 {
-            return true
-        } else {
-            return false
-        }
+        return self.range(of: pattern, options: .regularExpression)
     }
     
-    func commented() -> String {
-        return "// " + self
+    func isCommented() -> Bool {
+        
+        let pattern = #"^\s*//.*$"#
+        
+        return self.range(of: pattern, options: .regularExpression) != nil
     }
     
     func uncommented() -> String {
         
-        guard let index = self.firstIndex(where: { $0 == Character("/") } ) else {
+        guard let range = self.commentPrefixRange() else {
             return self
         }
         
-        let uncommentedIndex = self.index(index, offsetBy: 2)
-        return String(self[uncommentedIndex..<self.endIndex])
+        return String(self[range.upperBound...])
     }
     
+    func commented() -> String {
+        
+        return "//\(self)"
+    }
 }
