@@ -20,6 +20,7 @@
 		C4AC9740223E8BB300BEE085 /* XcielSourceTextBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AC973F223E8BB300BEE085 /* XcielSourceTextBuffer.swift */; };
 		C4AC9742223E8BD400BEE085 /* XCSourceTextPosition+Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AC9741223E8BD400BEE085 /* XCSourceTextPosition+Util.swift */; };
 		C4AC9744223E8BF800BEE085 /* Stack.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AC9743223E8BF800BEE085 /* Stack.swift */; };
+		C4D756C322524DDE0098197C /* String+Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4D756C222524DDE0098197C /* String+Comment.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,6 +84,7 @@
 		C4AC973F223E8BB300BEE085 /* XcielSourceTextBuffer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XcielSourceTextBuffer.swift; sourceTree = "<group>"; };
 		C4AC9741223E8BD400BEE085 /* XCSourceTextPosition+Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCSourceTextPosition+Util.swift"; sourceTree = "<group>"; };
 		C4AC9743223E8BF800BEE085 /* Stack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stack.swift; sourceTree = "<group>"; };
+		C4D756C222524DDE0098197C /* String+Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Comment.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -188,6 +190,7 @@
 				C4AC973D223E8B9000BEE085 /* XCSourceTextBuffer+Util.swift */,
 				C4AC9741223E8BD400BEE085 /* XCSourceTextPosition+Util.swift */,
 				C4AC9743223E8BF800BEE085 /* Stack.swift */,
+				C4D756C222524DDE0098197C /* String+Comment.swift */,
 				C4AC9734223E8B3700BEE085 /* Info.plist */,
 				C4AC9735223E8B3700BEE085 /* Xciel_Extension.entitlements */,
 			);
@@ -281,6 +284,7 @@
 				TargetAttributes = {
 					C4AC96F9223E8B2F00BEE085 = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1020;
 					};
 					C4AC9709223E8B3000BEE085 = {
 						CreatedOnToolsVersion = 10.1;
@@ -292,6 +296,7 @@
 					};
 					C4AC972A223E8B3700BEE085 = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1020;
 					};
 				};
 			};
@@ -384,6 +389,7 @@
 				C4AC9742223E8BD400BEE085 /* XCSourceTextPosition+Util.swift in Sources */,
 				C4AC9744223E8BF800BEE085 /* Stack.swift in Sources */,
 				C4AC9740223E8BB300BEE085 /* XcielSourceTextBuffer.swift in Sources */,
+				C4D756C322524DDE0098197C /* String+Comment.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -550,7 +556,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "Takuma-Matsushita.Xciel";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -570,7 +576,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "Takuma-Matsushita.Xciel";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -672,7 +678,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "Takuma-Matsushita.Xciel.Xciel-Extension";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -692,7 +698,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "Takuma-Matsushita.Xciel.Xciel-Extension";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};

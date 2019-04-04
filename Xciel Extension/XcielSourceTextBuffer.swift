@@ -12,31 +12,6 @@ import XcodeKit
 public enum CielOption {
     case exceptStartEndBrackets
 }
-//
-//public struct Bracket: RawRepresentable {
-//
-//    public init?(rawValue: String) {
-//        self.rawValue = ""
-//    }
-//
-//    public var rawValue: String
-//
-//
-//    public typealias RawValue = String
-//
-//
-//    let start: String
-//    let end: String
-//
-//    init(start: String, end: String) {
-//        self.start = start
-//        self.end = end
-//    }
-//}
-//
-//public enum BracketType: Bracket {
-//    case Hoge = Bracket(start: "{", end: "}")
-//}
 
 public enum BracketType: String {
     case parenthesis   = "\\(\\)"
@@ -479,5 +454,12 @@ open class XcielSourceTextBuffer {
     private func isQuoted(position: XCSourceTextPosition) -> Bool {
         // TODO
         return false
+    }
+    
+    // MARK: Comment
+    
+    public func isCommented(range: XCSourceTextRange) -> Bool {
+        return lines(from: range.start.line, to: range.end.line)
+            .allSatisfy { $0.isCommented() }
     }
 }

@@ -64,7 +64,7 @@ class XcielCommentOutRegionCommand: NSObject, XCSourceEditorCommand {
             
             // comment out
             
-            invocation.buffer.commentOut(range: range, in: cielBuffer)
+            invocation.buffer.toggleComment(range: range, in: cielBuffer)
         }
         
         completionHandler(nil)
@@ -106,7 +106,7 @@ class XcielSelectRegionCommand: NSObject, XCSourceEditorCommand {
             
             // select region
             
-            invocation.buffer.select(range: range)
+            invocation.buffer.select(range: range, in: cielBuffer)
         }
         
         completionHandler(nil)

@@ -17,14 +17,29 @@ extension XCSourceTextBuffer  {
     
     // MARK: - Select
     
-    func select(range: XCSourceTextRange) {
-        let selection: XCSourceTextRange = .init(
-            start: XCSourceTextPosition(
-                line: range.start.line,
-                column: range.start.column + 1
-            ),
-            end: range.end
-        )
+    func select(range: XCSourceTextRange, in buffer: XcielSourceTextBuffer, exceptStartEndLine: Bool = true) {
+        
+        let selection: XCSourceTextRange
+        
+        if exceptStartEndLine {
+            selection = .init(
+                start: XCSourceTextPosition(
+                    line: range.start.line,
+                    column: range.start.column + 1
+                ),
+                end: range.end
+            )
+        } else {
+            selection = .init(
+                start: .init(
+                    line: range.start.line, column: 0
+                ),
+                end: .init(
+                    line: range.end.line,
+                    column: buffer.line(at: range.end.line).count - 1
+                )
+            )
+        }
         
         self.selections.replaceObject(at: 0, with: selection)
     }
@@ -57,6 +72,58 @@ extension XCSourceTextBuffer  {
         let newLines = buffer.lines(from: startLine, to: endLine)
         let commentedLines = newLines.map { "// " + $0 }
 
+        self.lines.replaceObjects(in: NSRange(
+            location: startLine,
+            length: endLine - startLine + 1
+        ), withObjectsFrom: commentedLines)
+    }
+    
+    func toggleComment(range: XCSourceTextRange, in buffer: XcielSourceTextBuffer, exceptStartEndLine: Bool = true) {
+        
+        guard range.start.line != range.end.line else {
+            
+            if buffer.line(at: range.start.line).isCommented() {
+                
+                self.lines.replaceObject(
+                    at: range.start.line,
+                    with: buffer.line(at: range.start.line).uncommented()
+                )
+            } else {
+                
+                self.lines.replaceObject(
+                    at: range.start.line,
+                    with: buffer.line(at: range.start.line).commented()
+                )
+            }
+            return
+        }
+        
+        let startLine: Int
+        let endLine: Int
+        
+        if exceptStartEndLine {
+            startLine = range.start.line + 1
+            endLine = range.end.line - 1
+        } else {
+            startLine = range.start.line
+            endLine = range.end.line
+        }
+        
+        let targetLinesString = buffer.lines(from: startLine, to: endLine)
+        let commentedLines: [String]
+        let target: XCSourceTextRange = .init(
+            start: .init(line: startLine, column: 0),
+            end: .init(line: endLine, column: 0)
+        )
+        
+        // TODO: replace range with startLine and endLine range
+        
+        if buffer.isCommented(range: target) {
+            commentedLines = targetLinesString.map { $0.uncommented() }
+        } else {
+            commentedLines = targetLinesString.map { $0.commented() }
+        }
+        
         self.lines.replaceObjects(in: NSRange(
             location: startLine,
             length: endLine - startLine + 1
