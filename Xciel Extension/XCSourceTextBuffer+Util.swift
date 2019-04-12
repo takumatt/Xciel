@@ -193,7 +193,7 @@ extension XCSourceTextBuffer  {
     
     func killNicely(range: XCSourceTextRange, exceptStartEndLine: Bool = false, in buffer: XcielSourceTextBuffer) {
         
-        if range.start.line == range.end.line {
+        guard range.start.line != range.end.line else {
             
             self.killInLine(
                 between: range.start.nextPosition(in: buffer),
@@ -210,10 +210,39 @@ extension XCSourceTextBuffer  {
             return
         }
         
-        if !exceptStartEndLine {
-            self.kill(
-                range: range
+        guard exceptStartEndLine else {
+            
+            let target = XCSourceTextRange(
+                start: .init(
+                    line: range.start.line,
+                    column: 0
+                ),
+                end: .init(
+                    line: range.end.line,
+                    column: buffer.line(at: range.end.line).count - 1
+                )
             )
+            
+            let indentation = buffer.indentation(at: target.start.line)
+            
+            self.replace(
+                line: range.start.line,
+                with: indentation ?? ""
+            )
+            
+            self.kill(
+                range: target,
+                startOffset: 1
+            )
+            
+            let cursorPosition = XCSourceTextPosition(
+                line: target.start.line,
+                column: buffer.line(at: target.start.line).count - 1
+            )
+            
+            self.move(position: cursorPosition)
+            
+            return
         }
         
         let indentation = buffer.indentation(at: range.start.line + 1)
@@ -235,7 +264,6 @@ extension XCSourceTextBuffer  {
         )
         
         self.move(position: cursorPosition)
-        
     }
 }
 

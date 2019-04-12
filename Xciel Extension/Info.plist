@@ -30,6 +30,14 @@
 			<array>
 				<dict>
 					<key>XCSourceEditorCommandClassName</key>
+					<string>$(PRODUCT_MODULE_NAME).XcielDeleteRegionIncludesCursorLineCommand</string>
+					<key>XCSourceEditorCommandIdentifier</key>
+					<string>$(PRODUCT_BUNDLE_IDENTIFIER).XcielDeleteRegionIncludesCursorLineCommand</string>
+					<key>XCSourceEditorCommandName</key>
+					<string>Delete (Includes Cursor Line)</string>
+				</dict>
+				<dict>
+					<key>XCSourceEditorCommandClassName</key>
 					<string>$(PRODUCT_MODULE_NAME).XcielCommentOutRegionCommand</string>
 					<key>XCSourceEditorCommandIdentifier</key>
 					<string>$(PRODUCT_BUNDLE_IDENTIFIER).XcielCommentOutRegionCommand</string>

@@ -189,8 +189,8 @@
 				C4AC973F223E8BB300BEE085 /* XcielSourceTextBuffer.swift */,
 				C4AC973D223E8B9000BEE085 /* XCSourceTextBuffer+Util.swift */,
 				C4AC9741223E8BD400BEE085 /* XCSourceTextPosition+Util.swift */,
-				C4AC9743223E8BF800BEE085 /* Stack.swift */,
 				C4D756C222524DDE0098197C /* String+Comment.swift */,
+				C4AC9743223E8BF800BEE085 /* Stack.swift */,
 				C4AC9734223E8B3700BEE085 /* Info.plist */,
 				C4AC9735223E8B3700BEE085 /* Xciel_Extension.entitlements */,
 			);

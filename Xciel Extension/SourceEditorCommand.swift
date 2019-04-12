@@ -31,7 +31,7 @@ class XcielDeleteRegionCommand: NSObject, XCSourceEditorCommand {
     }
 }
 
-class XcielDeleteRegionIncludesLineCommand: NSObject, XCSourceEditorCommand {
+class XcielDeleteRegionIncludesCursorLineCommand: NSObject, XCSourceEditorCommand {
     
     func perform(with invocation: XCSourceEditorCommandInvocation, completionHandler: @escaping (Error?) -> Void) {
         
@@ -113,7 +113,7 @@ class XcielSelectRegionCommand: NSObject, XCSourceEditorCommand {
     }
 }
 
-//class XcielSelectRegionCommand: NSObject, XCSourceEditorCommand {
+//class XcielSelectRegionIncludesLineCommand: NSObject, XCSourceEditorCommand {
 //
 //    func perform(with invocation: XCSourceEditorCommandInvocation, completionHandler: @escaping (Error?) -> Void ) -> Void {
 //
@@ -127,7 +127,7 @@ class XcielSelectRegionCommand: NSObject, XCSourceEditorCommand {
 //
 //            // select region
 //
-//            invocation.buffer.select(range: range)
+//            invocation.buffer.select(range: range, in: cielBuffer, exceptStartEndLine: false)
 //        }
 //
 //        completionHandler(nil)
