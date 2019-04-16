@@ -399,9 +399,18 @@ open class XcielSourceTextBuffer {
         }
         
         var stacks: [ BracketType : Stack<BufferStackCell> ] = [
-            .paren  : Stack<BufferStackCell>([BufferStackCell(character: "(", position: self.position)]),
-            .brace  : Stack<BufferStackCell>([BufferStackCell(character: "{", position: self.position)]),
-            .square : Stack<BufferStackCell>([BufferStackCell(character: "[", position: self.position)])
+            .paren  : Stack<BufferStackCell>([BufferStackCell(
+                character: BracketType.paren.open,
+                position: self.position
+                )]),
+            .brace  : Stack<BufferStackCell>([BufferStackCell(
+                character: BracketType.brace.open,
+                position: self.position
+                )]),
+            .square : Stack<BufferStackCell>([BufferStackCell(
+                character: BracketType.square.open,
+                position: self.position
+                )])
         ]
         
         let isFinished = {
@@ -469,6 +478,10 @@ open class XcielSourceTextBuffer {
     public func searchForward(characters: String, position: XCSourceTextPosition) -> XCSourceTextPosition? {
     
         var pos = position
+        
+        guard !characters.contains(character(at: pos)) else {
+            return pos
+        }
         
         while !(pos == endOfFile) {
             
