@@ -9,11 +9,19 @@
 import Foundation
 import XcodeKit
 
-public struct Stack<T> {
+public struct Stack<T>: CustomStringConvertible {
     
     private var list: [T] = []
     
+    public var description: String {
+        return self.list.map { "\($0)\n" }.reduce("", +)
+    }
+    
     init() { }
+    
+    init(_ initialStack: [T]) {
+        self.list = initialStack
+    }
     
     mutating func push(_ elem: T) {
         self.list.append(elem)
@@ -39,12 +47,16 @@ public struct Stack<T> {
     }
 }
 
-public struct BufferStackCell {
+public struct BufferStackCell: CustomStringConvertible {
     
-    internal let character: String
+    internal let character: Character
     internal let position: XCSourceTextPosition
     
-    init(character: String, position: XCSourceTextPosition) {
+    public var description: String {
+        return #"\#(self.position): "\#(self.character)""#
+    }
+    
+    init(character: Character, position: XCSourceTextPosition) {
         self.character = character
         self.position = position
     }

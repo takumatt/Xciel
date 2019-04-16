@@ -13,12 +13,6 @@ public enum CielOption {
     case exceptStartEndBrackets
 }
 
-public enum BracketType: String {
-    case parenthesis   = "\\(\\)"
-    case brace         = "\\{\\}"
-    case squareBracket = "\\[\\]"
-}
-
 open class XcielSourceTextBuffer {
     
     // An extended XCSourceTextBuffer.
@@ -198,10 +192,10 @@ open class XcielSourceTextBuffer {
             
             pos = matched
             
-            if let peek = stack.peek(), peek.character != String(character(at: pos)) {
+            if let peek = stack.peek(), peek.character != character(at: pos) {
                 let _ = stack.pop()
             } else {
-                let cell = BufferStackCell(character: String(character(at: pos)), position: pos)
+                let cell = BufferStackCell(character: character(at: pos), position: pos)
                 stack.push(cell)
             }
             
@@ -225,16 +219,16 @@ open class XcielSourceTextBuffer {
         
         repeat {
             
-            guard let matched = regexpSearchForward(regexp: regexp, position: pos) else {
+            guard let matched = regexpSearchForwardLegacy(regexp: regexp, position: pos) else {
                 return nil
             }
             
             pos = matched
             
-            if let peek = stack.peek(), peek.character != String(character(at: pos)) {
+            if let peek = stack.peek(), peek.character != character(at: pos) {
                 let _ = stack.pop()
             } else {
-                let cell = BufferStackCell(character: String(character(at: pos)), position: pos)
+                let cell = BufferStackCell(character: character(at: pos), position: pos)
                 stack.push(cell)
             }
             
@@ -301,13 +295,15 @@ open class XcielSourceTextBuffer {
         return XCSourceTextRange(start: beg, end: end)
     }
     
-    public func cielerSearchEndOfParent() -> XCSourceTextPosition? {
+    public func cielerSearchLegacyEndOfParent() -> XCSourceTextPosition? {
+        
+        // TODO: use rawstrings and swift 5.0 API
         
         let pattern: String =
             "["
-                + BracketType.parenthesis.rawValue
-                + BracketType.brace.rawValue
-                + BracketType.squareBracket.rawValue
+                + LegacyBracketType.parenthesis.rawValue
+                + LegacyBracketType.brace.rawValue
+                + LegacyBracketType.squareBracket.rawValue
                 + "]"
         
         guard let regexp = try? NSRegularExpression(pattern: pattern) else {
@@ -320,7 +316,7 @@ open class XcielSourceTextBuffer {
             return self.position
         }
         
-        var stacks: [ BracketType : Stack<BufferStackCell> ] = [
+        var stacks: [ LegacyBracketType : Stack<BufferStackCell> ] = [
             .parenthesis: Stack<BufferStackCell>(),
             .brace: Stack<BufferStackCell>(),
             .squareBracket: Stack<BufferStackCell>()
@@ -342,7 +338,7 @@ open class XcielSourceTextBuffer {
                 
                 pos = pos.nextPosition(in: self)
                 
-                guard let matched = self.regexpSearchForward(regexp: regexp, position: pos) else {
+                guard let matched = self.regexpSearchForwardLegacy(regexp: regexp, position: pos) else {
                     print("match nothing.")
                     return nil
                 }
@@ -356,30 +352,30 @@ open class XcielSourceTextBuffer {
                 case Character("("), Character(")"):
                     
                     if let peek = stacks[.parenthesis]?.peek(),
-                        peek.character != String(character(at: pos)) {
+                        peek.character != character(at: pos) {
                         let _ = stacks[.parenthesis]?.pop()
                     } else {
-                        let cell = BufferStackCell(character: String(character(at: pos)), position: pos)
+                        let cell = BufferStackCell(character: character(at: pos), position: pos)
                         stacks[.parenthesis]?.push(cell)
                     }
                     
                 case Character("{"), Character("}"):
                     
                     if let peek = stacks[.brace]?.peek(),
-                        peek.character != String(character(at: pos)) {
+                        peek.character != character(at: pos) {
                         let _ = stacks[.brace]?.pop()
                     } else {
-                        let cell = BufferStackCell(character: String(character(at: pos)), position: pos)
+                        let cell = BufferStackCell(character: character(at: pos), position: pos)
                         stacks[.brace]?.push(cell)
                     }
                     
                 case Character("["), Character("]"):
                     
                     if let peek = stacks[.squareBracket]?.peek(),
-                        peek.character != String(character(at: pos)) {
+                        peek.character != character(at: pos) {
                         let _ = stacks[.squareBracket]?.pop()
                     } else {
-                        let cell = BufferStackCell(character: String(character(at: pos)), position: pos)
+                        let cell = BufferStackCell(character: character(at: pos), position: pos)
                         stacks[.squareBracket]?.push(cell)
                     }
                     
@@ -394,10 +390,60 @@ open class XcielSourceTextBuffer {
         
         return pos
     }
+
+    
+    public func cielerSearchEndOfParent() -> XCSourceTextPosition? {
+    
+        guard BracketType.allCases.allSatisfy({ $0.close != self.character(at: position) }) else {
+                return self.position
+        }
+        
+        var stacks: [ BracketType : Stack<BufferStackCell> ] = [
+            .paren  : Stack<BufferStackCell>([BufferStackCell(character: "(", position: self.position)]),
+            .brace  : Stack<BufferStackCell>([BufferStackCell(character: "{", position: self.position)]),
+            .square : Stack<BufferStackCell>([BufferStackCell(character: "[", position: self.position)])
+        ]
+        
+        let isFinished = {
+            stacks.filter { $1.count == 0 }.count == 1
+        }
+        
+        let searchCharacters = BracketType.allCases.reduce(into: "") { (res, bracket) in
+            res += String(bracket.open) + String(bracket.close)
+        }
+        
+        var pos = self.position
+        
+        while !isFinished() {
+            
+            pos = pos.nextPosition(in: self)
+        
+            guard let matched = self.searchForward(characters: searchCharacters, position: pos) else {
+                return nil
+            }
+            
+            let char = character(at: matched)
+            
+            guard let bracketType = BracketType(rawValue: char) else {
+                return nil
+            }
+            
+            pos = matched
+            
+            if let peek = stacks[bracketType]?.peek(), peek.character != char {
+                let _ = stacks[bracketType]?.pop()
+            } else {
+                let cell = BufferStackCell(character: char, position: pos)
+                stacks[bracketType]?.push(cell)
+            }
+        }
+        
+        return pos
+    }
     
     // MARK: Regex Search
     
-    public func regexpSearchForward(regexp: NSRegularExpression, position: XCSourceTextPosition) -> XCSourceTextPosition? {
+    public func regexpSearchForwardLegacy(regexp: NSRegularExpression, position: XCSourceTextPosition) -> XCSourceTextPosition? {
         
         var pos = position
         
@@ -413,6 +459,22 @@ open class XcielSourceTextBuffer {
             
             if match(regexp: regexp, char: char) {
                 print("return", pos, character(at: pos))
+                return pos
+            }
+        }
+        
+        return nil
+    }
+    
+    public func searchForward(characters: String, position: XCSourceTextPosition) -> XCSourceTextPosition? {
+    
+        var pos = position
+        
+        while !(pos == endOfFile) {
+            
+            pos = pos.nextPosition(in: self)
+            
+            if characters.contains(character(at: pos)) {
                 return pos
             }
         }

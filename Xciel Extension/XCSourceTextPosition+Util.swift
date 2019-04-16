@@ -36,6 +36,7 @@ extension XCSourceTextPosition {
         guard self != buffer.endOfFile else { return self }
         
         let lastColumn = buffer.line(at: self.line).count - 1
+        
         if self.column >= lastColumn {
             let nextLine = self.line + 1
             let nextColumn = 0
