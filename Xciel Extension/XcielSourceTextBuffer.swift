@@ -155,6 +155,22 @@ open class XcielSourceTextBuffer {
         return nil
     }
     
+    public func searchBackward(characters: String) -> XCSourceTextPosition? {
+        
+        var pos = position
+        
+        while (pos != beginningOfFile) {
+            
+            pos = pos.previousPosition(in: self)
+            
+            if characters.contains(character(at: pos)) {
+                return pos
+            }
+        }
+        
+        return nil
+    }
+    
     public func searchForward(char: Character) -> XCSourceTextPosition? {
         var pos = self.position
         
@@ -169,9 +185,30 @@ open class XcielSourceTextBuffer {
         return nil
     }
     
+    
+    public func searchForward(characters: String, position: XCSourceTextPosition) -> XCSourceTextPosition? {
+        
+        var pos = position
+        
+        guard !characters.contains(character(at: pos)) else {
+            return pos
+        }
+        
+        while !(pos == endOfFile) {
+            
+            pos = pos.nextPosition(in: self)
+            
+            if characters.contains(character(at: pos)) {
+                return pos
+            }
+        }
+        
+        return nil
+    }
+    
     // MARK: - CielSearch
     
-    public func searchBeginningOfParent(pattern: String = "[{}]") -> XCSourceTextPosition? {
+    public func searchBeginningOfParentLegacy(pattern: String = "[{}]") -> XCSourceTextPosition? {
         
         guard let regexp = try? NSRegularExpression(pattern: pattern) else {
             return nil
@@ -199,6 +236,35 @@ open class XcielSourceTextBuffer {
                 stack.push(cell)
             }
             
+        } while (!(stack.isEmpty))
+        
+        return pos
+    }
+    
+    public func searchBeginningOfParent(bracket: BracketType) -> XCSourceTextPosition? {
+        
+        var stack = Stack<BufferStackCell>([BufferStackCell(
+            character: bracket.close,
+            position: self.position
+            )])
+        
+        let searchCharacters = String(bracket.open) + String(bracket.close)
+        
+        var pos = self.position
+        
+        repeat {
+            guard let matched = searchBackward(characters: searchCharacters) else {
+                return nil
+            }
+            
+            pos = matched
+            
+            if let peek = stack.peek(), peek.character != character(at: pos) {
+                let _ = stack.pop()
+            } else {
+                let cell = BufferStackCell(character: character(at: pos), position: pos)
+                stack.push(cell)
+            }
         } while (!(stack.isEmpty))
         
         return pos
@@ -241,7 +307,7 @@ open class XcielSourceTextBuffer {
     
     public func searchRegion(options: [CielOption]) -> XCSourceTextRange? {
         
-        let beg = self.searchBeginningOfParent()
+        let beg = self.searchBeginningOfParentLegacy()
         let end = self.searchEndOfParent()
         
         if let beg = beg, let end = end {
@@ -272,21 +338,8 @@ open class XcielSourceTextBuffer {
         
         print("えらばれたのは", character(at: end), end, "でした")
         
-        let endBracket = character(at: end)
-        let pattern: String
-        
-        switch endBracket {
-        case "}":
-            pattern = "[\\{\\}]"
-        case ")":
-            pattern = "[\\(\\)]"
-        case "]":
-            pattern = "[\\[\\]]"
-        default:
-            pattern = ""
-        }
-        
-        guard let beg = searchBeginningOfParent(pattern: pattern) else {
+        guard let bracket = BracketType(rawValue: character(at: end)),
+              let beg = searchBeginningOfParent(bracket: bracket) else {
             return nil
         }
         
@@ -398,20 +451,15 @@ open class XcielSourceTextBuffer {
                 return self.position
         }
         
-        var stacks: [ BracketType : Stack<BufferStackCell> ] = [
-            .paren  : Stack<BufferStackCell>([BufferStackCell(
-                character: BracketType.paren.open,
-                position: self.position
-                )]),
-            .brace  : Stack<BufferStackCell>([BufferStackCell(
-                character: BracketType.brace.open,
-                position: self.position
-                )]),
-            .square : Stack<BufferStackCell>([BufferStackCell(
-                character: BracketType.square.open,
-                position: self.position
+        var stacks: [BracketType : Stack<BufferStackCell>] = [:]
+        
+        BracketType.allCases.forEach { bracket in
+            stacks[bracket] = Stack<BufferStackCell>([
+                BufferStackCell(
+                    character: bracket.open,
+                    position: self.position
                 )])
-        ]
+        }
         
         let isFinished = {
             stacks.filter { $1.count == 0 }.count == 1
@@ -468,26 +516,6 @@ open class XcielSourceTextBuffer {
             
             if match(regexp: regexp, char: char) {
                 print("return", pos, character(at: pos))
-                return pos
-            }
-        }
-        
-        return nil
-    }
-    
-    public func searchForward(characters: String, position: XCSourceTextPosition) -> XCSourceTextPosition? {
-    
-        var pos = position
-        
-        guard !characters.contains(character(at: pos)) else {
-            return pos
-        }
-        
-        while !(pos == endOfFile) {
-            
-            pos = pos.nextPosition(in: self)
-            
-            if characters.contains(character(at: pos)) {
                 return pos
             }
         }
