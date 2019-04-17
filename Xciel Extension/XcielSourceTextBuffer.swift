@@ -155,7 +155,7 @@ open class XcielSourceTextBuffer {
         return nil
     }
     
-    public func searchBackward(characters: String) -> XCSourceTextPosition? {
+    public func searchBackward(characters: String, position: XCSourceTextPosition) -> XCSourceTextPosition? {
         
         var pos = position
         
@@ -250,10 +250,12 @@ open class XcielSourceTextBuffer {
         
         let searchCharacters = String(bracket.open) + String(bracket.close)
         
+        print(searchCharacters)
+        
         var pos = self.position
         
         repeat {
-            guard let matched = searchBackward(characters: searchCharacters) else {
+            guard let matched = searchBackward(characters: searchCharacters, position: pos) else {
                 return nil
             }
             
@@ -265,6 +267,9 @@ open class XcielSourceTextBuffer {
                 let cell = BufferStackCell(character: character(at: pos), position: pos)
                 stack.push(cell)
             }
+            
+            print(stack)
+            
         } while (!(stack.isEmpty))
         
         return pos
