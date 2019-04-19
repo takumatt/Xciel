@@ -10,7 +10,6 @@
 		C45774622260285200EFEC14 /* BracketType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45774612260285200EFEC14 /* BracketType.swift */; };
 		C4AC96FE223E8B2F00BEE085 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AC96FD223E8B2F00BEE085 /* AppDelegate.swift */; };
 		C4AC9700223E8B3000BEE085 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C4AC96FF223E8B3000BEE085 /* Assets.xcassets */; };
-		C4AC9703223E8B3000BEE085 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4AC9701223E8B3000BEE085 /* MainMenu.xib */; };
 		C4AC970F223E8B3000BEE085 /* XcielTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AC970E223E8B3000BEE085 /* XcielTests.swift */; };
 		C4AC971A223E8B3000BEE085 /* XcielUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AC9719223E8B3000BEE085 /* XcielUITests.swift */; };
 		C4AC972E223E8B3700BEE085 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4AC972D223E8B3700BEE085 /* Cocoa.framework */; };
@@ -22,6 +21,7 @@
 		C4AC9742223E8BD400BEE085 /* XCSourceTextPosition+Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AC9741223E8BD400BEE085 /* XCSourceTextPosition+Util.swift */; };
 		C4AC9744223E8BF800BEE085 /* Stack.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AC9743223E8BF800BEE085 /* Stack.swift */; };
 		C4D756C322524DDE0098197C /* String+Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4D756C222524DDE0098197C /* String+Comment.swift */; };
+		C4E537B72269B00600F50BBE /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E537B62269B00600F50BBE /* main.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,7 +67,6 @@
 		C4AC96FA223E8B2F00BEE085 /* Xciel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Xciel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4AC96FD223E8B2F00BEE085 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C4AC96FF223E8B3000BEE085 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		C4AC9702223E8B3000BEE085 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		C4AC9704223E8B3000BEE085 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C4AC9705223E8B3000BEE085 /* Xciel.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Xciel.entitlements; sourceTree = "<group>"; };
 		C4AC970A223E8B3000BEE085 /* XcielTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = XcielTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -87,6 +86,7 @@
 		C4AC9741223E8BD400BEE085 /* XCSourceTextPosition+Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCSourceTextPosition+Util.swift"; sourceTree = "<group>"; };
 		C4AC9743223E8BF800BEE085 /* Stack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stack.swift; sourceTree = "<group>"; };
 		C4D756C222524DDE0098197C /* String+Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Comment.swift"; sourceTree = "<group>"; };
+		C4E537B62269B00600F50BBE /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,8 +149,8 @@
 			isa = PBXGroup;
 			children = (
 				C4AC96FD223E8B2F00BEE085 /* AppDelegate.swift */,
+				C4E537B62269B00600F50BBE /* main.swift */,
 				C4AC96FF223E8B3000BEE085 /* Assets.xcassets */,
-				C4AC9701223E8B3000BEE085 /* MainMenu.xib */,
 				C4AC9704223E8B3000BEE085 /* Info.plist */,
 				C4AC9705223E8B3000BEE085 /* Xciel.entitlements */,
 			);
@@ -330,7 +330,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				C4AC9700223E8B3000BEE085 /* Assets.xcassets in Resources */,
-				C4AC9703223E8B3000BEE085 /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -362,6 +361,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C4E537B72269B00600F50BBE /* main.swift in Sources */,
 				C4AC96FE223E8B2F00BEE085 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -416,17 +416,6 @@
 			targetProxy = C4AC9736223E8B3700BEE085 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		C4AC9701223E8B3000BEE085 /* MainMenu.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				C4AC9702223E8B3000BEE085 /* Base */,
-			);
-			name = MainMenu.xib;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		C4AC971C223E8B3000BEE085 /* Debug */ = {
