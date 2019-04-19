@@ -148,8 +148,8 @@
 		C4AC96FC223E8B2F00BEE085 /* Xciel */ = {
 			isa = PBXGroup;
 			children = (
-				C4AC96FD223E8B2F00BEE085 /* AppDelegate.swift */,
 				C4E537B62269B00600F50BBE /* main.swift */,
+				C4AC96FD223E8B2F00BEE085 /* AppDelegate.swift */,
 				C4AC96FF223E8B3000BEE085 /* Assets.xcassets */,
 				C4AC9704223E8B3000BEE085 /* Info.plist */,
 				C4AC9705223E8B3000BEE085 /* Xciel.entitlements */,

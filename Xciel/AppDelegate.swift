@@ -8,23 +8,11 @@
 
 import Cocoa
 
-// @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
-
-    // @IBOutlet weak var window: NSWindow!
-    
-//    private let window: NSWindow = {
-//        let viewController = ViewController()
-//        let window = NSWindow(contentViewController: viewController)
-//        window.title = "Xciel"
-//        return window
-//    }()
     
     private var window: NSWindow!
 
-
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        // Insert code here to initialize your application
         
         let viewController = ViewController()
         
@@ -39,10 +27,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             defer: false
         )
         
-        self.window.title = "Xciel"
-        self.window.titlebarAppearsTransparent = false
-        self.window.titleVisibility = .visible
-        self.window.contentViewController = viewController
+        do {
+            self.window.title = "Xciel"
+            self.window.titlebarAppearsTransparent = false
+            self.window.titleVisibility = .visible
+            self.window.contentViewController = viewController
+        }
         
         self.window.center()
         self.window.makeKeyAndOrderFront(nil)
@@ -59,26 +49,62 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
 final class ViewController: NSViewController {
     
-    private let button: NSButton = {
+    private let logoImageView: NSImageView = {
+        let imageView = NSImageView()
+        // imageView.
+        return imageView
+    }()
+    
+    private let titleText: NSText = {
+        let text = NSText()
+        return text
+    }()
+    
+    private let versionInfoText: NSText = {
+        let text = NSText()
+        return text
+    }()
+    
+    private let suggestionText: NSText = {
+        let text = NSText()
+        text.translatesAutoresizingMaskIntoConstraints = false
+        text.string = """
+        Please ensure System Preferences > Extensions > Xciel is enabled.
+        """
+        text.backgroundColor = .clear
+        text.alignment = .center
+        text.isEditable = false
+        return text
+    }()
+    
+    private let openPreferencesButton: NSButton = {
         let button = NSButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.stringValue = "HOge"
+        button.title = "Open Extensions in System Preferences"
         button.action = #selector(tap)
         return button
     }()
     
     override func loadView() {
-        self.view = NSView(frame: .init(x: 0, y: 0, width: 300, height: 300))
+        self.view = NSView(frame: .init(x: 0, y: 0, width: 640, height: 400))
     }
     
     override func viewDidLoad() {
-        self.view.addSubview(button)
+        
+        self.view.addSubview(suggestionText)
+        self.view.addSubview(openPreferencesButton)
         
         NSLayoutConstraint.activate([
-            button.topAnchor.constraint(equalTo: self.view.topAnchor),
-            button.rightAnchor.constraint(equalTo: self.view.rightAnchor),
-            button.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
-            button.leftAnchor.constraint(equalTo: self.view.leftAnchor)
+            suggestionText.bottomAnchor.constraint(equalTo: self.openPreferencesButton.topAnchor),
+            suggestionText.heightAnchor.constraint(equalToConstant: 32.0),
+            suggestionText.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+            suggestionText.trailingAnchor.constraint(equalTo: self.view.trailingAnchor)
+            ])
+        
+        NSLayoutConstraint.activate([
+            openPreferencesButton.topAnchor.constraint(equalTo: self.suggestionText.bottomAnchor),
+            openPreferencesButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+            openPreferencesButton.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -24.0)
         ])
     }
     
