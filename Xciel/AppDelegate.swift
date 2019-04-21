@@ -50,21 +50,24 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 final class ViewController: NSViewController {
     
     private let logoImageView: NSImageView = {
-        let imageView = NSImageView()
-        // imageView.
+        let imageView = NSImageView(image: NSImage(named: "AppIcon")!)
+        imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
     
-    private let titleText: NSText = {
+    private let infoText: NSText = {
         let text = NSText()
+        text.translatesAutoresizingMaskIntoConstraints = false
+        text.string = """
+        Xciel Version 0.6 alpha
+        Written by Takuma Matsushita
+        """
+        text.font = NSFont.systemFont(ofSize: 18.0)
+        text.backgroundColor = .clear
+        text.isEditable = false
         return text
     }()
-    
-    private let versionInfoText: NSText = {
-        let text = NSText()
-        return text
-    }()
-    
+
     private let suggestionText: NSText = {
         let text = NSText()
         text.translatesAutoresizingMaskIntoConstraints = false
@@ -91,8 +94,22 @@ final class ViewController: NSViewController {
     
     override func viewDidLoad() {
         
+        self.view.addSubview(logoImageView)
+        self.view.addSubview(infoText)
         self.view.addSubview(suggestionText)
         self.view.addSubview(openPreferencesButton)
+        
+        NSLayoutConstraint.activate([
+            logoImageView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 80.0),
+            logoImageView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 80.0)
+            ])
+        
+        NSLayoutConstraint.activate([
+            infoText.leadingAnchor.constraint(equalTo: logoImageView.trailingAnchor, constant: 32.0),
+            infoText.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+            infoText.heightAnchor.constraint(equalToConstant: 64.0),
+            infoText.centerYAnchor.constraint(equalTo: logoImageView.centerYAnchor)
+            ])
         
         NSLayoutConstraint.activate([
             suggestionText.bottomAnchor.constraint(equalTo: self.openPreferencesButton.topAnchor),
@@ -105,7 +122,7 @@ final class ViewController: NSViewController {
             openPreferencesButton.topAnchor.constraint(equalTo: self.suggestionText.bottomAnchor),
             openPreferencesButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
             openPreferencesButton.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -24.0)
-        ])
+            ])
     }
     
     @objc
