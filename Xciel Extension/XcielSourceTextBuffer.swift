@@ -286,17 +286,6 @@ open class XcielSourceTextBuffer {
         return pos
     }
     
-    // MARK: Double Quotes
-    
-    private func countDoubleQuotes(in line: Int) -> Int {
-        return self.line(at: line).filter({ $0 == "\"" }).count
-    }
-    
-    private func isQuoted(position: XCSourceTextPosition) -> Bool {
-        // TODO
-        return false
-    }
-    
     // MARK: Comment
     
     public func isCommented(range: XCSourceTextRange) -> Bool {

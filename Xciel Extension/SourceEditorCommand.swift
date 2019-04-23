@@ -9,6 +9,7 @@
 import Foundation
 import XcodeKit
 
+// MARK: Delete
 
 class XcielDeleteRegionCommand: NSObject, XCSourceEditorCommand {
     
@@ -21,8 +22,6 @@ class XcielDeleteRegionCommand: NSObject, XCSourceEditorCommand {
         let cielBuffer = XcielSourceTextBuffer(original: invocation.buffer, position: pos)
         
         if let range = cielBuffer.cielerSearcher() {
-            
-            // kill region
             
             invocation.buffer.killNicely(range: range, exceptStartEndLine: true, in: cielBuffer)
         }
@@ -50,6 +49,8 @@ class XcielDeleteRegionIncludesCursorLineCommand: NSObject, XCSourceEditorComman
     }
 }
 
+// MARK: Comment
+
 class XcielCommentOutRegionCommand: NSObject, XCSourceEditorCommand {
     
     func perform(with invocation: XCSourceEditorCommandInvocation, completionHandler: @escaping (Error?) -> Void ) -> Void {
@@ -61,8 +62,6 @@ class XcielCommentOutRegionCommand: NSObject, XCSourceEditorCommand {
         let cielBuffer = XcielSourceTextBuffer(original: invocation.buffer, position: pos)
         
         if let range = cielBuffer.cielerSearcher() {
-            
-            // comment out
             
             invocation.buffer.toggleComment(range: range, in: cielBuffer)
         }
@@ -83,14 +82,14 @@ class XcielCommentOutRegionIncludesCursorLineCommand: NSObject, XCSourceEditorCo
 
         if let range = cielBuffer.cielerSearcher() {
 
-            // comment out
-
             invocation.buffer.toggleComment(range: range, in: cielBuffer, exceptStartEndLine: false)
         }
 
         completionHandler(nil)
     }
 }
+
+// MARK: Select
 
 class XcielSelectRegionCommand: NSObject, XCSourceEditorCommand {
     
@@ -103,8 +102,6 @@ class XcielSelectRegionCommand: NSObject, XCSourceEditorCommand {
         let cielBuffer = XcielSourceTextBuffer(original: invocation.buffer, position: pos)
         
         if let range = cielBuffer.cielerSearcher() {
-            
-            // select region
             
             invocation.buffer.select(range: range, in: cielBuffer)
         }
