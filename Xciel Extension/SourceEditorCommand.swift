@@ -113,23 +113,23 @@ class XcielSelectRegionCommand: NSObject, XCSourceEditorCommand {
     }
 }
 
-//class XcielSelectRegionIncludesLineCommand: NSObject, XCSourceEditorCommand {
-//
-//    func perform(with invocation: XCSourceEditorCommandInvocation, completionHandler: @escaping (Error?) -> Void ) -> Void {
-//
-//        guard let pos = invocation.buffer.currentPosition() else {
-//            return completionHandler(nil)
-//        }
-//
-//        let cielBuffer = XcielSourceTextBuffer(original: invocation.buffer, position: pos)
-//
-//        if let range = cielBuffer.cielerSearcher() {
-//
-//            // select region
-//
-//            invocation.buffer.select(range: range, in: cielBuffer, exceptStartEndLine: false)
-//        }
-//
-//        completionHandler(nil)
-//    }
-//}
+class XcielSelectRegionIncludesCursorLineCommand: NSObject, XCSourceEditorCommand {
+
+    func perform(with invocation: XCSourceEditorCommandInvocation, completionHandler: @escaping (Error?) -> Void ) -> Void {
+
+        guard let pos = invocation.buffer.currentPosition() else {
+            return completionHandler(nil)
+        }
+
+        let cielBuffer = XcielSourceTextBuffer(original: invocation.buffer, position: pos)
+
+        if let range = cielBuffer.cielerSearcher() {
+
+            // select region
+
+            invocation.buffer.select(range: range, in: cielBuffer, exceptStartEndLine: false)
+        }
+
+        completionHandler(nil)
+    }
+}

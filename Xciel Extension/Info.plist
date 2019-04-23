@@ -30,6 +30,14 @@
 			<array>
 				<dict>
 					<key>XCSourceEditorCommandClassName</key>
+					<string>$(PRODUCT_MODULE_NAME).XcielSelectRegionIncludesCursorLineCommand</string>
+					<key>XCSourceEditorCommandIdentifier</key>
+					<string>$(PRODUCT_BUNDLE_IDENTIFIER).XcielSelectRegionIncludesCursorLineCommand</string>
+					<key>XCSourceEditorCommandName</key>
+					<string>Select (Includes Cursor Line)</string>
+				</dict>
+				<dict>
+					<key>XCSourceEditorCommandClassName</key>
 					<string>$(PRODUCT_MODULE_NAME).XcielCommentOutRegionIncludesCursorLineCommand</string>
 					<key>XCSourceEditorCommandIdentifier</key>
 					<string>$(PRODUCT_BUNDLE_IDENTIFIER).XcielCommentOutRegionIncludesCursorLineCommand</string>
