@@ -30,38 +30,6 @@
 			<array>
 				<dict>
 					<key>XCSourceEditorCommandClassName</key>
-					<string>$(PRODUCT_MODULE_NAME).XcielSelectRegionIncludesCursorLineCommand</string>
-					<key>XCSourceEditorCommandIdentifier</key>
-					<string>$(PRODUCT_BUNDLE_IDENTIFIER).XcielSelectRegionIncludesCursorLineCommand</string>
-					<key>XCSourceEditorCommandName</key>
-					<string>Select (Includes Cursor Line)</string>
-				</dict>
-				<dict>
-					<key>XCSourceEditorCommandClassName</key>
-					<string>$(PRODUCT_MODULE_NAME).XcielCommentOutRegionIncludesCursorLineCommand</string>
-					<key>XCSourceEditorCommandIdentifier</key>
-					<string>$(PRODUCT_BUNDLE_IDENTIFIER).XcielCommentOutRegionIncludesCursorLineCommand</string>
-					<key>XCSourceEditorCommandName</key>
-					<string>Comment Out (Includes Cursor Line)</string>
-				</dict>
-				<dict>
-					<key>XCSourceEditorCommandClassName</key>
-					<string>$(PRODUCT_MODULE_NAME).XcielDeleteRegionIncludesCursorLineCommand</string>
-					<key>XCSourceEditorCommandIdentifier</key>
-					<string>$(PRODUCT_BUNDLE_IDENTIFIER).XcielDeleteRegionIncludesCursorLineCommand</string>
-					<key>XCSourceEditorCommandName</key>
-					<string>Delete (Includes Cursor Line)</string>
-				</dict>
-				<dict>
-					<key>XCSourceEditorCommandClassName</key>
-					<string>$(PRODUCT_MODULE_NAME).XcielCommentOutRegionCommand</string>
-					<key>XCSourceEditorCommandIdentifier</key>
-					<string>$(PRODUCT_BUNDLE_IDENTIFIER).XcielCommentOutRegionCommand</string>
-					<key>XCSourceEditorCommandName</key>
-					<string>Comment Out</string>
-				</dict>
-				<dict>
-					<key>XCSourceEditorCommandClassName</key>
 					<string>$(PRODUCT_MODULE_NAME).XcielSelectRegionCommand</string>
 					<key>XCSourceEditorCommandIdentifier</key>
 					<string>$(PRODUCT_BUNDLE_IDENTIFIER).XcielSelectRegionCommand</string>
@@ -75,6 +43,38 @@
 					<string>$(PRODUCT_BUNDLE_IDENTIFIER).XcielDeleteRegionCommand</string>
 					<key>XCSourceEditorCommandName</key>
 					<string>Delete</string>
+				</dict>
+				<dict>
+					<key>XCSourceEditorCommandClassName</key>
+					<string>$(PRODUCT_MODULE_NAME).XcielCommentOutRegionCommand</string>
+					<key>XCSourceEditorCommandIdentifier</key>
+					<string>$(PRODUCT_BUNDLE_IDENTIFIER).XcielCommentOutRegionCommand</string>
+					<key>XCSourceEditorCommandName</key>
+					<string>Comment Out</string>
+				</dict>
+				<dict>
+					<key>XCSourceEditorCommandClassName</key>
+					<string>$(PRODUCT_MODULE_NAME).XcielSelectRegionGreedilyCommand</string>
+					<key>XCSourceEditorCommandIdentifier</key>
+					<string>$(PRODUCT_BUNDLE_IDENTIFIER).XcielSelectRegionGreedilyCommand</string>
+					<key>XCSourceEditorCommandName</key>
+					<string>Select (Greedy)</string>
+				</dict>
+				<dict>
+					<key>XCSourceEditorCommandClassName</key>
+					<string>$(PRODUCT_MODULE_NAME).XcielDeleteRegionGreedilyCommand</string>
+					<key>XCSourceEditorCommandIdentifier</key>
+					<string>$(PRODUCT_BUNDLE_IDENTIFIER).XcielDeleteRegionGreedilyCommand</string>
+					<key>XCSourceEditorCommandName</key>
+					<string>Delete (Greedy)</string>
+				</dict>
+				<dict>
+					<key>XCSourceEditorCommandClassName</key>
+					<string>$(PRODUCT_MODULE_NAME).XcielCommentOutRegionGreedilyCommand</string>
+					<key>XCSourceEditorCommandIdentifier</key>
+					<string>$(PRODUCT_BUNDLE_IDENTIFIER).XcielCommentOutRegionGreedilyCommand</string>
+					<key>XCSourceEditorCommandName</key>
+					<string>Comment Out (Greedy)</string>
 				</dict>
 			</array>
 			<key>XCSourceEditorExtensionPrincipalClass</key>
