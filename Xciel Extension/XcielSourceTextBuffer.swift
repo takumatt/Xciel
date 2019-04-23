@@ -188,8 +188,6 @@ open class XcielSourceTextBuffer {
         
         let searchCharacters = String(bracket.open) + String(bracket.close)
         
-        print(searchCharacters)
-        
         var pos = self.position
         
         repeat {
@@ -206,8 +204,6 @@ open class XcielSourceTextBuffer {
                 stack.push(cell)
             }
             
-            print(stack)
-            
         } while (!(stack.isEmpty))
         
         return pos
@@ -221,14 +217,13 @@ open class XcielSourceTextBuffer {
             return nil
         }
         
-        print("えらばれたのは", character(at: end), end, "でした")
-        
         guard let bracket = BracketType(rawValue: character(at: end)),
               let beg = searchBeginningOfParent(bracket: bracket) else {
             return nil
         }
         
-        print(beg, end, character(at: beg), character(at: end))
+        print("beg: \(beg), end:\(end)")
+        self.debugPrint(beg, end)
         
         return XCSourceTextRange(start: beg, end: end)
     }
@@ -291,5 +286,24 @@ open class XcielSourceTextBuffer {
     public func isCommented(range: XCSourceTextRange) -> Bool {
         return lines(from: range.start.line, to: range.end.line)
             .allSatisfy { $0.isCommented() }
+    }
+    
+    // MARK: Debug
+    
+    public func debugPrint(_ positions: XCSourceTextPosition...) {
+        
+        for pos in positions {
+            
+            let positionMarkedString =
+                (string(before: pos) + "🔲" + string(after: pos))
+            
+            print(
+                """
+                
+                🚩 \(pos):
+                \(positionMarkedString)
+                """
+            )
+        }
     }
 }
