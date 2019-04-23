@@ -8,12 +8,6 @@
 
 import Foundation
 
-public enum LegacyBracketType: String {
-    case parenthesis   = "\\(\\)"
-    case brace         = "\\{\\}"
-    case squareBracket = "\\[\\]"
-}
-
 public enum BracketType: RawRepresentable, CaseIterable {
 
     case paren

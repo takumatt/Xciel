@@ -141,20 +141,6 @@ open class XcielSourceTextBuffer {
     
     // MARK: - Search
     
-    public func searchBackward(char: Character) -> XCSourceTextPosition? {
-        var pos = self.position
-        
-        while (pos != beginningOfFile) {
-            pos = pos.previousPosition(in: self)
-            
-            if self.character(at: pos) == char {
-                return pos
-            }
-        }
-        
-        return nil
-    }
-    
     public func searchBackward(characters: String, position: XCSourceTextPosition) -> XCSourceTextPosition? {
         
         var pos = position
@@ -170,21 +156,6 @@ open class XcielSourceTextBuffer {
         
         return nil
     }
-    
-    public func searchForward(char: Character) -> XCSourceTextPosition? {
-        var pos = self.position
-        
-        while (pos != endOfFile) {
-            pos = pos.nextPosition(in: self)
-            
-            if self.character(at: pos) == char {
-                return pos
-            }
-        }
-        
-        return nil
-    }
-    
     
     public func searchForward(characters: String, position: XCSourceTextPosition) -> XCSourceTextPosition? {
         
@@ -207,39 +178,6 @@ open class XcielSourceTextBuffer {
     }
     
     // MARK: - CielSearch
-    
-    public func searchBeginningOfParentLegacy(pattern: String = "[{}]") -> XCSourceTextPosition? {
-        
-        guard let regexp = try? NSRegularExpression(pattern: pattern) else {
-            return nil
-        }
-        
-        var stack = Stack<BufferStackCell>()
-        
-        // To make the algorithm easy, I firstly put meaningless bracket.
-        
-        stack.push(.init(character: "}", position: self.position))
-        var pos = self.position
-        
-        repeat {
-            
-            guard let matched = regexpSearchBackward(regexp: regexp, position: pos) else {
-                return nil
-            }
-            
-            pos = matched
-            
-            if let peek = stack.peek(), peek.character != character(at: pos) {
-                let _ = stack.pop()
-            } else {
-                let cell = BufferStackCell(character: character(at: pos), position: pos)
-                stack.push(cell)
-            }
-            
-        } while (!(stack.isEmpty))
-        
-        return pos
-    }
     
     public func searchBeginningOfParent(bracket: BracketType) -> XCSourceTextPosition? {
         
@@ -275,64 +213,6 @@ open class XcielSourceTextBuffer {
         return pos
     }
     
-    public func searchEndOfParent(pattern: String = "[\\{\\}]") -> XCSourceTextPosition? {
-        
-        guard let regexp = try? NSRegularExpression(pattern: pattern) else {
-            return nil
-        }
-        
-        var stack = Stack<BufferStackCell>()
-        
-        // To make the algorithm easy, I firstly put meaningless bracket.
-        
-        stack.push(.init(character: "{", position: self.position))
-        var pos = self.position
-        
-        repeat {
-            
-            guard let matched = regexpSearchForwardLegacy(regexp: regexp, position: pos) else {
-                return nil
-            }
-            
-            pos = matched
-            
-            if let peek = stack.peek(), peek.character != character(at: pos) {
-                let _ = stack.pop()
-            } else {
-                let cell = BufferStackCell(character: character(at: pos), position: pos)
-                stack.push(cell)
-            }
-            
-            pos = pos.nextPosition(in: self)
-            
-        } while (!(stack.isEmpty))
-        
-        return pos
-    }
-    
-    public func searchRegion(options: [CielOption]) -> XCSourceTextRange? {
-        
-        let beg = self.searchBeginningOfParentLegacy()
-        let end = self.searchEndOfParent()
-        
-        if let beg = beg, let end = end {
-            
-            if options.contains(.exceptStartEndBrackets) {
-                return .init(
-                    start: beg.nextPosition(in: self),
-                    end: end.previousPosition(in: self)
-                )
-            } else {
-                return .init(
-                    start: beg,
-                    end: end
-                )
-            }
-        }
-        
-        return nil
-    }
-    
     // MARK: CielerSearcher
     
     public func cielerSearcher() ->  XCSourceTextRange? {
@@ -352,103 +232,6 @@ open class XcielSourceTextBuffer {
         
         return XCSourceTextRange(start: beg, end: end)
     }
-    
-    public func cielerSearchLegacyEndOfParent() -> XCSourceTextPosition? {
-        
-        // TODO: use rawstrings and swift 5.0 API
-        
-        let pattern: String =
-            "["
-                + LegacyBracketType.parenthesis.rawValue
-                + LegacyBracketType.brace.rawValue
-                + LegacyBracketType.squareBracket.rawValue
-                + "]"
-        
-        guard let regexp = try? NSRegularExpression(pattern: pattern) else {
-            print("regexp construction failed.")
-            return nil
-        }
-        
-        guard !match(regexp: regexp, char: character(at: self.position)) else {
-            print("guard first match!")
-            return self.position
-        }
-        
-        var stacks: [ LegacyBracketType : Stack<BufferStackCell> ] = [
-            .parenthesis: Stack<BufferStackCell>(),
-            .brace: Stack<BufferStackCell>(),
-            .squareBracket: Stack<BufferStackCell>()
-        ]
-        
-        stacks[.parenthesis]?.push(BufferStackCell(character: "(", position: self.position))
-        stacks[.brace]?.push(BufferStackCell(character: "{", position: self.position))
-        stacks[.squareBracket]?.push(BufferStackCell(character: "[", position: self.position))
-        
-        var pos = self.position
-        
-        while (
-            !(
-                stacks[.parenthesis]?.count == 0 && stacks[.brace]?.count == 1 && stacks[.squareBracket]?.count == 1
-                    || stacks[.parenthesis]?.count == 1 && stacks[.brace]?.count == 0 && stacks[.squareBracket]?.count == 1
-                    || stacks[.parenthesis]?.count == 1 && stacks[.brace]?.count == 1 && stacks[.squareBracket]?.count == 0
-            )
-            ) {
-                
-                pos = pos.nextPosition(in: self)
-                
-                guard let matched = self.regexpSearchForwardLegacy(regexp: regexp, position: pos) else {
-                    print("match nothing.")
-                    return nil
-                }
-                
-                pos = matched
-                
-                print("matched", character(at: pos), pos)
-                
-                switch character(at: pos) {
-                    
-                case Character("("), Character(")"):
-                    
-                    if let peek = stacks[.parenthesis]?.peek(),
-                        peek.character != character(at: pos) {
-                        let _ = stacks[.parenthesis]?.pop()
-                    } else {
-                        let cell = BufferStackCell(character: character(at: pos), position: pos)
-                        stacks[.parenthesis]?.push(cell)
-                    }
-                    
-                case Character("{"), Character("}"):
-                    
-                    if let peek = stacks[.brace]?.peek(),
-                        peek.character != character(at: pos) {
-                        let _ = stacks[.brace]?.pop()
-                    } else {
-                        let cell = BufferStackCell(character: character(at: pos), position: pos)
-                        stacks[.brace]?.push(cell)
-                    }
-                    
-                case Character("["), Character("]"):
-                    
-                    if let peek = stacks[.squareBracket]?.peek(),
-                        peek.character != character(at: pos) {
-                        let _ = stacks[.squareBracket]?.pop()
-                    } else {
-                        let cell = BufferStackCell(character: character(at: pos), position: pos)
-                        stacks[.squareBracket]?.push(cell)
-                    }
-                    
-                default:
-                    print("switch default")
-                    return nil
-                }
-                
-                // print(stacks[.parenthesis]?.count, stacks[.brace]?.count, stacks[.squareBracket]?.count)
-                
-        }
-        
-        return pos
-    }
-
     
     public func cielerSearchEndOfParent() -> XCSourceTextPosition? {
     
@@ -501,56 +284,6 @@ open class XcielSourceTextBuffer {
         }
         
         return pos
-    }
-    
-    // MARK: Regex Search
-    
-    public func regexpSearchForwardLegacy(regexp: NSRegularExpression, position: XCSourceTextPosition) -> XCSourceTextPosition? {
-        
-        var pos = position
-        
-        guard !match(regexp: regexp, char: character(at: position)) else {
-            print("early return", position, character(at: position))
-            return pos
-        }
-        
-        while !(pos == endOfFile) {
-            
-            pos = pos.nextPosition(in: self)
-            let char = character(at: pos)
-            
-            if match(regexp: regexp, char: char) {
-                print("return", pos, character(at: pos))
-                return pos
-            }
-        }
-        
-        return nil
-    }
-    
-    public func regexpSearchBackward(regexp: NSRegularExpression, position: XCSourceTextPosition) -> XCSourceTextPosition? {
-        
-        // SearchBackward doesn't look current character, so that search functions can't infinite loop.
-        // In other words, SearchBackward starts searching from the previous character.
-        
-        var pos = position
-        
-        while !(pos == beginningOfFile) {
-            
-            pos = pos.previousPosition(in: self)
-            let char = character(at: pos)
-            
-            if match(regexp: regexp, char: char) {
-                return pos
-            }
-        }
-        
-        return nil
-    }
-    
-    private func match(regexp: NSRegularExpression, char: Character) -> Bool {
-        return regexp.matches(in: String(char), range: NSRange(location: 0, length: 1))
-            .count > 0
     }
     
     // MARK: Double Quotes

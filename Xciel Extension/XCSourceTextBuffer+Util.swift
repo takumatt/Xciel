@@ -46,38 +46,6 @@ extension XCSourceTextBuffer  {
     
     // MARK: - Comment
     
-    func commentOut(range: XCSourceTextRange, in buffer: XcielSourceTextBuffer, exceptStartEndLine: Bool = true) {
-        
-         guard range.start.line != range.end.line else {
-
-            self.lines.replaceObject(
-                at: range.start.line,
-                with: "// " + buffer.line(at: range.start.line)
-            )
-            
-            return
-        }
-        
-        let startLine: Int
-        let endLine: Int
-        
-        if exceptStartEndLine {
-            startLine = range.start.line + 1
-            endLine = range.end.line - 1
-        } else {
-            startLine = range.start.line
-            endLine = range.end.line
-        }
-        
-        let newLines = buffer.lines(from: startLine, to: endLine)
-        let commentedLines = newLines.map { "// " + $0 }
-
-        self.lines.replaceObjects(in: NSRange(
-            location: startLine,
-            length: endLine - startLine + 1
-        ), withObjectsFrom: commentedLines)
-    }
-    
     func toggleComment(range: XCSourceTextRange, in buffer: XcielSourceTextBuffer, exceptStartEndLine: Bool = true) {
         
         guard range.start.line != range.end.line else {
