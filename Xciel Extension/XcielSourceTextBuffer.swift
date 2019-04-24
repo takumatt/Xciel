@@ -214,15 +214,18 @@ open class XcielSourceTextBuffer {
     public func cielerSearcher() ->  XCSourceTextRange? {
         
         guard let end = cielerSearchEndOfParent() else {
+            print("❌ cielerSearchEndOfParent failed.")
             return nil
         }
         
         guard let bracket = BracketType(rawValue: character(at: end)),
               let beg = searchBeginningOfParent(bracket: bracket) else {
+            print("❌ searchBeginningOfParent failed. end: \(end), char: \(character(at: end)).")
+            self.debugPrint(end)
             return nil
         }
         
-        print("beg: \(beg), end:\(end)")
+        print("🎉 A pair found! beg: \(beg), end:\(end).")
         self.debugPrint(beg, end)
         
         return XCSourceTextRange(start: beg, end: end)
@@ -296,14 +299,20 @@ open class XcielSourceTextBuffer {
             
             let positionMarkedString =
                 (string(before: pos) + "🔲" + string(after: pos))
+                    .map { (char: Character) -> String in
+                        switch char {
+                        case "\n":
+                            return ""
+                        default:
+                            return String(char)
+                        }
+                    }
+                    .reduce("", +)
             
-            print(
-                """
-                
+            print("""
                 🚩 \(pos):
                 \(positionMarkedString)
-                """
-            )
+                """)
         }
     }
 }
