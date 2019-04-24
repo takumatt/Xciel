@@ -13,14 +13,14 @@ public enum BracketType: RawRepresentable, CaseIterable {
     case paren
     case brace
     case square
-    case angle
+    // case angle
     
     public typealias Bracket = (open: Character, close: Character)
     
     private static let parenBracket:  Bracket = (open: "(", close: ")")
     private static let braceBracket:  Bracket = (open: "{", close: "}")
     private static let squareBracket: Bracket = (open: "[", close: "]")
-    private static let angleBracket:  Bracket = (open: "<", close: ">")
+    // private static let angleBracket:  Bracket = (open: "<", close: ">")
     
     public var rawValue: Bracket {
         switch self {
@@ -30,8 +30,8 @@ public enum BracketType: RawRepresentable, CaseIterable {
             return type(of: self).braceBracket
         case .square:
             return type(of: self).squareBracket
-        case .angle:
-            return type(of: self).angleBracket
+        // case .angle:
+        //     return type(of: self).angleBracket
         }
     }
     
@@ -51,8 +51,8 @@ public enum BracketType: RawRepresentable, CaseIterable {
             self = .brace
         case ("[", "]"):
             self = .square
-        case ("<", ">"):
-            self = .angle
+        // case ("<", ">"):
+        //     self = .angle
         default: return nil
         }
     }
@@ -65,8 +65,8 @@ public enum BracketType: RawRepresentable, CaseIterable {
             self = .brace
         case "[", "]":
             self = .square
-        case "<", ">":
-            self = .angle
+        // case "<", ">":
+        //     self = .angle
         default: return nil
         }
     }
