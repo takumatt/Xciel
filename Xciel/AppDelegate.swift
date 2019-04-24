@@ -55,29 +55,45 @@ final class ViewController: NSViewController {
         return imageView
     }()
     
-    private let infoText: NSText = {
-        let text = NSText()
-        let version = (Bundle.main.infoDictionary!["CFBundleShortVersionString"] as? String) ?? ""
+    private let appText: NSTextField = {
+        let text = NSTextField()
         text.translatesAutoresizingMaskIntoConstraints = false
-        text.string = """
-        Xciel Version \(version)
-        Written by Takuma Matsushita
+        let version = (Bundle.main.infoDictionary!["CFBundleShortVersionString"] as? String) ?? ""
+        text.stringValue = """
+        Xciel \(version)
         """
-        text.font = NSFont.systemFont(ofSize: 18.0)
-        text.backgroundColor = .clear
+        text.font = NSFont.boldSystemFont(ofSize: 18.0)
         text.isEditable = false
+        text.isBezeled = false
+        text.drawsBackground = false
+        return text
+    }()
+    
+    private let infoText: NSTextField = {
+        let text = NSTextField()
+        text.translatesAutoresizingMaskIntoConstraints = false
+        text.stringValue = """
+        Written by Takuma Matsushita
+        
+        If you have any issues or suggestions, please report from here.
+        We appreciate any suggestion! (e.g. language error)
+        """
+        text.isEditable = false
+        text.isBezeled = false
+        text.drawsBackground = false
         return text
     }()
 
-    private let suggestionText: NSText = {
-        let text = NSText()
+    private let suggestionText: NSTextField = {
+        let text = NSTextField()
         text.translatesAutoresizingMaskIntoConstraints = false
-        text.string = """
+        text.stringValue = """
         Please ensure System Preferences > Extensions > Xciel is enabled.
         """
-        text.backgroundColor = .clear
         text.alignment = .center
         text.isEditable = false
+        text.isBezeled = false
+        text.drawsBackground = false
         return text
     }()
     
@@ -90,37 +106,58 @@ final class ViewController: NSViewController {
     }()
     
     override func loadView() {
-        self.view = NSView(frame: .init(x: 0, y: 0, width: 640, height: 400))
+        self.view = NSView(frame: .init(x: 0, y: 0, width: 480, height: 320))
     }
     
     override func viewDidLoad() {
         
+        let containerView: NSView = {
+            let view = NSView()
+            view.translatesAutoresizingMaskIntoConstraints = false
+            return view
+        }()
+        
         self.view.addSubview(logoImageView)
-        self.view.addSubview(infoText)
+        self.view.addSubview(containerView)
+        containerView.addSubview(appText)
+        containerView.addSubview(infoText)
         self.view.addSubview(suggestionText)
         self.view.addSubview(openPreferencesButton)
         
+        logoImageView.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
+        logoImageView.setContentHuggingPriority(.defaultHigh, for: .horizontal)
+        
         NSLayoutConstraint.activate([
-            logoImageView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 80.0),
-            logoImageView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 80.0)
+            logoImageView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 64.0),
+            logoImageView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 40.0)
             ])
         
         NSLayoutConstraint.activate([
-            infoText.leadingAnchor.constraint(equalTo: logoImageView.trailingAnchor, constant: 32.0),
-            infoText.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
-            infoText.heightAnchor.constraint(equalToConstant: 64.0),
-            infoText.centerYAnchor.constraint(equalTo: logoImageView.centerYAnchor)
+            containerView.centerYAnchor.constraint(equalTo: logoImageView.centerYAnchor),
+            containerView.leadingAnchor.constraint(equalTo: logoImageView.trailingAnchor, constant: 24.0),
+            containerView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -24.0)
             ])
         
         NSLayoutConstraint.activate([
-            suggestionText.bottomAnchor.constraint(equalTo: self.openPreferencesButton.topAnchor),
-            suggestionText.heightAnchor.constraint(equalToConstant: 32.0),
+            appText.topAnchor.constraint(equalTo: containerView.topAnchor),
+            appText.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
+            appText.trailingAnchor.constraint(equalTo: containerView.trailingAnchor)
+            ])
+        
+        NSLayoutConstraint.activate([
+            infoText.topAnchor.constraint(equalTo: appText.bottomAnchor, constant: 12.0),
+            infoText.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
+            infoText.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
+            infoText.bottomAnchor.constraint(equalTo: containerView.bottomAnchor),
+            ])
+        
+        NSLayoutConstraint.activate([
+            suggestionText.bottomAnchor.constraint(equalTo: self.openPreferencesButton.topAnchor, constant: -12.0),
             suggestionText.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
             suggestionText.trailingAnchor.constraint(equalTo: self.view.trailingAnchor)
             ])
         
         NSLayoutConstraint.activate([
-            openPreferencesButton.topAnchor.constraint(equalTo: self.suggestionText.bottomAnchor),
             openPreferencesButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
             openPreferencesButton.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -24.0)
             ])
