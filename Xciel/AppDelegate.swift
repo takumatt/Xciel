@@ -57,9 +57,10 @@ final class ViewController: NSViewController {
     
     private let infoText: NSText = {
         let text = NSText()
+        let version = (Bundle.main.infoDictionary!["CFBundleShortVersionString"] as? String) ?? ""
         text.translatesAutoresizingMaskIntoConstraints = false
         text.string = """
-        Xciel Version 0.6 alpha
+        Xciel Version \(version)
         Written by Takuma Matsushita
         """
         text.font = NSFont.systemFont(ofSize: 18.0)
