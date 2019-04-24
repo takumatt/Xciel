@@ -70,7 +70,7 @@ class XcielCommentOutRegionCommand: NSObject, XCSourceEditorCommand {
     }
 }
 
-class XcielCommentOutGreedilyCommand: NSObject, XCSourceEditorCommand {
+class XcielCommentOutRegionGreedilyCommand: NSObject, XCSourceEditorCommand {
 
     func perform(with invocation: XCSourceEditorCommandInvocation, completionHandler: @escaping (Error?) -> Void ) -> Void {
 
@@ -110,7 +110,7 @@ class XcielSelectRegionCommand: NSObject, XCSourceEditorCommand {
     }
 }
 
-class XcielSelectRegionIncludesGreedilyCommand: NSObject, XCSourceEditorCommand {
+class XcielSelectRegionGreedilyCommand: NSObject, XCSourceEditorCommand {
 
     func perform(with invocation: XCSourceEditorCommandInvocation, completionHandler: @escaping (Error?) -> Void ) -> Void {
 
