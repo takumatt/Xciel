@@ -74,9 +74,6 @@ final class ViewController: NSViewController {
         text.translatesAutoresizingMaskIntoConstraints = false
         text.stringValue = """
         Written by Takuma Matsushita
-        
-        If you have any issues or suggestions, please report from here.
-        We appreciate any suggestion! (e.g. language error)
         """
         text.isEditable = false
         text.isBezeled = false
@@ -168,8 +165,6 @@ final class ViewController: NSViewController {
         
         let url = URL(fileURLWithPath: "/System/Library/PreferencePanes/Extensions.prefPane")
         
-        if NSWorkspace.shared.open(url) {
-            print("default browser was successfully opened")
-        }
+        NSWorkspace.shared.open(url)
     }
 }
