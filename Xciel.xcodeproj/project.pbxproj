@@ -291,10 +291,12 @@
 					};
 					C4AC9709223E8B3000BEE085 = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1020;
 						TestTargetID = C4AC96F9223E8B2F00BEE085;
 					};
 					C4AC9714223E8B3000BEE085 = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1020;
 						TestTargetID = C4AC96F9223E8B2F00BEE085;
 					};
 					C4AC972A223E8B3700BEE085 = {
@@ -589,7 +591,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "Takuma-Matsushita.XcielTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Xciel.app/Contents/MacOS/Xciel";
 			};
 			name = Debug;
@@ -610,7 +612,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "Takuma-Matsushita.XcielTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Xciel.app/Contents/MacOS/Xciel";
 			};
 			name = Release;
@@ -630,7 +632,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "Takuma-Matsushita.XcielUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TEST_TARGET_NAME = Xciel;
 			};
 			name = Debug;
@@ -650,7 +652,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "Takuma-Matsushita.XcielUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TEST_TARGET_NAME = Xciel;
 			};
 			name = Release;
