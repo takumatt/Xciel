@@ -50,7 +50,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 final class ViewController: NSViewController {
     
     private let logoImageView: NSImageView = {
-        let imageView = NSImageView(image: NSImage(named: "AppIcon")!)
+        let imageView = NSImageView()
+        imageView.image = NSImage(named: "AppIcon")!
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
