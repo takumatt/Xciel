@@ -9,27 +9,26 @@
 import Foundation
 import XcodeKit
 
-enum KillLineOption {
-    case exceptStartEndLine
+public struct CielOptions: OptionSet {
+    
+    public let rawValue: Int
+    
+    public static let greedy = CielOptions(rawValue: 1 << 0)
+    
+    public init(rawValue: Int) {
+        self.rawValue = rawValue
+    }
 }
 
 extension XCSourceTextBuffer  {
     
     // MARK: - Select
     
-    func select(range: XCSourceTextRange, in buffer: XcielSourceTextBuffer, exceptStartEndLine: Bool = true) {
+    func select(range: XCSourceTextRange, in buffer: XcielSourceTextBuffer, options: [CielOptions] = []) {
         
         let selection: XCSourceTextRange
         
-        if exceptStartEndLine {
-            selection = .init(
-                start: XCSourceTextPosition(
-                    line: range.start.line,
-                    column: range.start.column + 1
-                ),
-                end: range.end
-            )
-        } else {
+        if options.contains(.greedy) {
             selection = .init(
                 start: .init(
                     line: range.start.line, column: 0
@@ -39,14 +38,22 @@ extension XCSourceTextBuffer  {
                     column: buffer.line(at: range.end.line).count - 1
                 )
             )
+        } else {
+            selection = .init(
+                start: XCSourceTextPosition(
+                    line: range.start.line,
+                    column: range.start.column + 1
+                ),
+                end: range.end
+            )
         }
-        
+
         self.selections.replaceObject(at: 0, with: selection)
     }
     
     // MARK: - Comment
     
-    func toggleComment(range: XCSourceTextRange, in buffer: XcielSourceTextBuffer, exceptStartEndLine: Bool = true) {
+    func toggleComment(range: XCSourceTextRange, in buffer: XcielSourceTextBuffer, options: [CielOptions] = []) {
         
         guard range.start.line != range.end.line else {
             
@@ -69,12 +76,12 @@ extension XCSourceTextBuffer  {
         let startLine: Int
         let endLine: Int
         
-        if exceptStartEndLine {
-            startLine = range.start.line + 1
-            endLine = range.end.line - 1
-        } else {
+        if options.contains(.greedy) {
             startLine = range.start.line
             endLine = range.end.line
+        } else {
+            startLine = range.start.line + 1
+            endLine = range.end.line - 1
         }
         
         let targetLinesString = buffer.lines(from: startLine, to: endLine)
@@ -159,7 +166,7 @@ extension XCSourceTextBuffer  {
     
     // MARK: - Ciel
     
-    func killNicely(range: XCSourceTextRange, exceptStartEndLine: Bool = false, in buffer: XcielSourceTextBuffer) {
+    func killNicely(range: XCSourceTextRange, in buffer: XcielSourceTextBuffer, options: [CielOptions] = []) {
         
         guard range.start.line != range.end.line else {
             
@@ -178,7 +185,7 @@ extension XCSourceTextBuffer  {
             return
         }
         
-        guard exceptStartEndLine else {
+        if options.contains(.greedy) {
             
             let target = XCSourceTextRange(
                 start: .init(

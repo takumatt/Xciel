@@ -23,7 +23,7 @@ class XcielDeleteRegionCommand: NSObject, XCSourceEditorCommand {
         
         if let range = cielBuffer.cielerSearcher() {
             
-            invocation.buffer.killNicely(range: range, exceptStartEndLine: true, in: cielBuffer)
+            invocation.buffer.killNicely(range: range, in: cielBuffer)
         }
         
         completionHandler(nil)
@@ -42,7 +42,7 @@ class XcielDeleteRegionGreedilyCommand: NSObject, XCSourceEditorCommand {
         
         if let range = cielBuffer.cielerSearcher() {
             
-            invocation.buffer.killNicely(range: range, exceptStartEndLine: false, in: cielBuffer)
+            invocation.buffer.killNicely(range: range, in: cielBuffer, options: [.greedy])
         }
         
         completionHandler(nil)
@@ -82,7 +82,7 @@ class XcielCommentOutRegionGreedilyCommand: NSObject, XCSourceEditorCommand {
 
         if let range = cielBuffer.cielerSearcher() {
 
-            invocation.buffer.toggleComment(range: range, in: cielBuffer, exceptStartEndLine: false)
+            invocation.buffer.toggleComment(range: range, in: cielBuffer, options: [.greedy])
         }
 
         completionHandler(nil)
@@ -124,7 +124,7 @@ class XcielSelectRegionGreedilyCommand: NSObject, XCSourceEditorCommand {
 
             // select region
 
-            invocation.buffer.select(range: range, in: cielBuffer, exceptStartEndLine: false)
+            invocation.buffer.select(range: range, in: cielBuffer, options: [.greedy])
         }
 
         completionHandler(nil)
