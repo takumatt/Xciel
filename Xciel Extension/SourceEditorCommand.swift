@@ -23,7 +23,7 @@ class XcielDeleteRegionCommand: NSObject, XCSourceEditorCommand {
         
         if let range = cielBuffer.cielerSearcher() {
             
-            invocation.buffer.killNicely(range: range, in: cielBuffer)
+            invocation.buffer.delete(range: range, in: cielBuffer)
         }
         
         completionHandler(nil)
@@ -40,9 +40,9 @@ class XcielDeleteRegionGreedilyCommand: NSObject, XCSourceEditorCommand {
         
         let cielBuffer = XcielSourceTextBuffer(original: invocation.buffer, position: pos)
         
-        if let range = cielBuffer.cielerSearcher() {
+        if let range = cielBuffer.cielerSearcher(options: [.greedy]) {
             
-            invocation.buffer.killNicely(range: range, in: cielBuffer, options: [.greedy])
+            invocation.buffer.delete(range: range, in: cielBuffer, options: [.greedy])
         }
         
         completionHandler(nil)
@@ -80,9 +80,9 @@ class XcielCommentOutRegionGreedilyCommand: NSObject, XCSourceEditorCommand {
 
         let cielBuffer = XcielSourceTextBuffer(original: invocation.buffer, position: pos)
 
-        if let range = cielBuffer.cielerSearcher() {
+        if let range = cielBuffer.cielerSearcher(options: [.greedy]) {
 
-            invocation.buffer.toggleComment(range: range, in: cielBuffer, options: [.greedy])
+            invocation.buffer.comment(range: range, in: cielBuffer, options: [.greedy])
         }
 
         completionHandler(nil)
@@ -120,7 +120,7 @@ class XcielSelectRegionGreedilyCommand: NSObject, XCSourceEditorCommand {
 
         let cielBuffer = XcielSourceTextBuffer(original: invocation.buffer, position: pos)
 
-        if let range = cielBuffer.cielerSearcher() {
+        if let range = cielBuffer.cielerSearcher(options: [.greedy]) {
 
             // select region
 

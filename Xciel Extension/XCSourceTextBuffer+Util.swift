@@ -25,40 +25,39 @@ extension XCSourceTextBuffer  {
     // MARK: - Select
     
     func select(range: XCSourceTextRange, in buffer: XcielSourceTextBuffer, options: [CielOptions] = []) {
+        self.selections.replaceObject(at: 0, with: range)
+    }
+    
+    // MARK: - Delete
+    
+    func delete(range: XCSourceTextRange, in buffer: XcielSourceTextBuffer, options: [CielOptions] = []) {
         
-        let selection: XCSourceTextRange
+        let target: XCSourceTextRange = options.contains(.greedy)
+            ? range
+            : .init(start: .init(line: range.start.line + 1, column: range.start.column),
+                    end:   .init(line: range.end.line - 1,   column: range.end.column))
         
-        if options.contains(.greedy) {
-            selection = .init(
-                start: .init(
-                    line: range.start.line, column: 0
-                ),
-                end: .init(
-                    line: range.end.line,
-                    column: buffer.line(at: range.end.line).count - 1
-                )
-            )
-        } else {
-            selection = .init(
-                start: XCSourceTextPosition(
-                    line: range.start.line,
-                    column: range.start.column + 1
-                ),
-                end: range.end
-            )
-        }
-
-        self.selections.replaceObject(at: 0, with: selection)
+        self.kill(range: target, in: buffer)
     }
     
     // MARK: - Comment
     
-    func toggleComment(range: XCSourceTextRange, in buffer: XcielSourceTextBuffer, options: [CielOptions] = []) {
+    func comment(range: XCSourceTextRange, in buffer: XcielSourceTextBuffer, options: [CielOptions] = []) {
+        
+        let target: XCSourceTextRange = options.contains(.greedy)
+            ? range
+            : .init(start: .init(line: range.start.line + 1, column: range.start.column),
+                    end:   .init(line: range.end.line - 1,   column: range.end.column))
+        
+        toggleComment(range: target, in: buffer)
+    }
+    
+    func toggleComment(range: XCSourceTextRange, in buffer: XcielSourceTextBuffer) {
         
         guard range.start.line != range.end.line else {
             
             if buffer.line(at: range.start.line).isCommented() {
-                
+
                 self.lines.replaceObject(
                     at: range.start.line,
                     with: buffer.line(at: range.start.line).uncommented()
@@ -73,30 +72,19 @@ extension XCSourceTextBuffer  {
             return
         }
         
-        let startLine: Int
-        let endLine: Int
+        let startLine = range.start.line
+        let endLine = range.end.line
         
-        if options.contains(.greedy) {
-            startLine = range.start.line
-            endLine = range.end.line
-        } else {
-            startLine = range.start.line + 1
-            endLine = range.end.line - 1
-        }
-        
-        let targetLinesString = buffer.lines(from: startLine, to: endLine)
         let commentedLines: [String]
-        let target: XCSourceTextRange = .init(
-            start: .init(line: startLine, column: 0),
-            end: .init(line: endLine, column: 0)
-        )
         
-        // TODO: replace range with startLine and endLine range
-        
-        if buffer.isCommented(range: target) {
-            commentedLines = targetLinesString.map { $0.uncommented() }
+        if buffer.isCommented(range: range) {
+            commentedLines = buffer
+                .lines(from: startLine, to: endLine)
+                .map { $0.uncommented() }
         } else {
-            commentedLines = targetLinesString.map { $0.commented() }
+            commentedLines = buffer
+                .lines(from: startLine, to: endLine)
+                .map { $0.commented() }
         }
         
         self.lines.replaceObjects(in: NSRange(
@@ -150,23 +138,9 @@ extension XCSourceTextBuffer  {
         self.lines.replaceObject(at: beg.line, with: newString)
     }
     
-    func kill(range: XCSourceTextRange, startOffset: Int = 0, endOffset: Int = 0) {
+    func kill(range: XCSourceTextRange, in buffer: XcielSourceTextBuffer) {
         
-        // Delete lines including start and end line.
-        
-        let startLine = range.start.line + startOffset
-        let endLine = range.end.line + endOffset
-        
-        self.lines.removeObjects(in: NSRange(
-            location: startLine,
-            length: endLine - startLine + 1
-            )
-        )
-    }
-    
-    // MARK: - Ciel
-    
-    func killNicely(range: XCSourceTextRange, in buffer: XcielSourceTextBuffer, options: [CielOptions] = []) {
+        // TODO: Copy to clipboard
         
         guard range.start.line != range.end.line else {
             
@@ -176,65 +150,31 @@ extension XCSourceTextBuffer  {
                 in: buffer
             )
             
-            self.move(position: .init(
-                line: range.start.line,
-                column: range.start.column + 1
-                )
-            )
-            
-            return
-        }
-        
-        if options.contains(.greedy) {
-            
-            let target = XCSourceTextRange(
-                start: .init(
+            self.move(
+                position: .init(
                     line: range.start.line,
-                    column: 0
-                ),
-                end: .init(
-                    line: range.end.line,
-                    column: buffer.line(at: range.end.line).count - 1
+                    column: range.start.column + 1
                 )
             )
-            
-            let indentation = buffer.indentation(at: target.start.line)
-            
-            self.replace(
-                line: range.start.line,
-                with: indentation ?? ""
-            )
-            
-            self.kill(
-                range: target,
-                startOffset: 1
-            )
-            
-            let cursorPosition = XCSourceTextPosition(
-                line: target.start.line,
-                column: buffer.line(at: target.start.line).count - 1
-            )
-            
-            self.move(position: cursorPosition)
             
             return
         }
         
-        let indentation = buffer.indentation(at: range.start.line + 1)
+        let indentation = buffer.indentation(at: range.start.line)
         
         self.replace(
-            line: range.start.line + 1,
+            line: range.start.line,
             with: indentation ?? ""
         )
         
-        self.kill(
-            range: range,
-            startOffset: 2,
-            endOffset: -1
+        self.lines.removeObjects(in: NSRange(
+            location: range.start.line,
+            length: range.end.line - range.start.line + 1
+            )
         )
         
         let cursorPosition = XCSourceTextPosition(
-            line: range.start.line + 1,
+            line: range.start.line,
             column: buffer.line(at: range.start.line).count - 1
         )
         

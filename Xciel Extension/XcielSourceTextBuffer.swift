@@ -9,10 +9,6 @@
 import Foundation
 import XcodeKit
 
-public enum CielOption {
-    case exceptStartEndBrackets
-}
-
 open class XcielSourceTextBuffer {
     
     // An extended XCSourceTextBuffer.
@@ -211,7 +207,7 @@ open class XcielSourceTextBuffer {
     
     // MARK: CielerSearcher
     
-    public func cielerSearcher() ->  XCSourceTextRange? {
+    public func cielerSearcher(options: [CielOptions] = []) ->  XCSourceTextRange? {
         
         guard let end = cielerSearchEndOfParent() else {
             print("❌ cielerSearchEndOfParent failed.")
@@ -227,6 +223,13 @@ open class XcielSourceTextBuffer {
         
         print("🎉 A pair found! beg: \(beg), end:\(end).")
         self.debugPrint(beg, end)
+        
+        if options.contains(.greedy) {
+            return XCSourceTextRange(
+                start: .init(line: beg.line, column: 0),
+                end: .init(line: end.line, column: line(at: end.line).count - 1)
+            )
+        }
         
         return XCSourceTextRange(start: beg, end: end)
     }
