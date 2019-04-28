@@ -9,17 +9,6 @@
 import Foundation
 import XcodeKit
 
-public struct CielOptions: OptionSet {
-    
-    public let rawValue: Int
-    
-    public static let greedy = CielOptions(rawValue: 1 << 0)
-    
-    public init(rawValue: Int) {
-        self.rawValue = rawValue
-    }
-}
-
 extension XCSourceTextBuffer  {
     
     // MARK: - Select

@@ -9,6 +9,48 @@
 import Foundation
 import XcodeKit
 
+// MARK: Select
+
+class XcielSelectRegionCommand: NSObject, XCSourceEditorCommand {
+    
+    func perform(with invocation: XCSourceEditorCommandInvocation, completionHandler: @escaping (Error?) -> Void ) -> Void {
+        
+        guard let pos = invocation.buffer.currentPosition() else {
+            return completionHandler(nil)
+        }
+        
+        let cielBuffer = XcielSourceTextBuffer(original: invocation.buffer, position: pos)
+        
+        if let range = cielBuffer.cielerSearcher() {
+            
+            invocation.buffer.select(range: range, in: cielBuffer)
+        }
+        
+        completionHandler(nil)
+    }
+}
+
+class XcielSelectRegionGreedilyCommand: NSObject, XCSourceEditorCommand {
+    
+    func perform(with invocation: XCSourceEditorCommandInvocation, completionHandler: @escaping (Error?) -> Void ) -> Void {
+        
+        guard let pos = invocation.buffer.currentPosition() else {
+            return completionHandler(nil)
+        }
+        
+        let cielBuffer = XcielSourceTextBuffer(original: invocation.buffer, position: pos)
+        
+        if let range = cielBuffer.cielerSearcher(options: [.greedy]) {
+            
+            // select region
+            
+            invocation.buffer.select(range: range, in: cielBuffer, options: [.greedy])
+        }
+        
+        completionHandler(nil)
+    }
+}
+
 // MARK: Delete
 
 class XcielDeleteRegionCommand: NSObject, XCSourceEditorCommand {
@@ -83,48 +125,6 @@ class XcielCommentOutRegionGreedilyCommand: NSObject, XCSourceEditorCommand {
         if let range = cielBuffer.cielerSearcher(options: [.greedy]) {
 
             invocation.buffer.comment(range: range, in: cielBuffer, options: [.greedy])
-        }
-
-        completionHandler(nil)
-    }
-}
-
-// MARK: Select
-
-class XcielSelectRegionCommand: NSObject, XCSourceEditorCommand {
-    
-    func perform(with invocation: XCSourceEditorCommandInvocation, completionHandler: @escaping (Error?) -> Void ) -> Void {
-        
-        guard let pos = invocation.buffer.currentPosition() else {
-            return completionHandler(nil)
-        }
-        
-        let cielBuffer = XcielSourceTextBuffer(original: invocation.buffer, position: pos)
-        
-        if let range = cielBuffer.cielerSearcher() {
-            
-            invocation.buffer.select(range: range, in: cielBuffer)
-        }
-        
-        completionHandler(nil)
-    }
-}
-
-class XcielSelectRegionGreedilyCommand: NSObject, XCSourceEditorCommand {
-
-    func perform(with invocation: XCSourceEditorCommandInvocation, completionHandler: @escaping (Error?) -> Void ) -> Void {
-
-        guard let pos = invocation.buffer.currentPosition() else {
-            return completionHandler(nil)
-        }
-
-        let cielBuffer = XcielSourceTextBuffer(original: invocation.buffer, position: pos)
-
-        if let range = cielBuffer.cielerSearcher(options: [.greedy]) {
-
-            // select region
-
-            invocation.buffer.select(range: range, in: cielBuffer, options: [.greedy])
         }
 
         completionHandler(nil)

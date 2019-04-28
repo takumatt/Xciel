@@ -15,10 +15,6 @@ open class XcielSourceTextBuffer {
     // This class aims to manage easily the buffer which originally is presented as NSMutableArray.
     // Also this provide the strings as String that got from the buffer.
     
-    // MARK: - Props
-    
-    // Usually, storing buffer with [[String]] is a bad practice......
-    
     public var lines: [String]
     public var position: XCSourceTextPosition
     public var selection: XCSourceTextRange? = nil
@@ -28,8 +24,6 @@ open class XcielSourceTextBuffer {
     }
     
     private let originalBuffer: XCSourceTextBuffer
-    
-    // MARK: - Computed Props
     
     public var lastLine: String {
         return self.lines[self.lines.count - 1]
@@ -48,9 +42,6 @@ open class XcielSourceTextBuffer {
             column: self.lastLine.count - 1
         )
     }
-    
-    // I couldn't override init XCSourceTextBuffer.
-    // Get as arguments and store it.
     
     init(original buffer: XCSourceTextBuffer, position: XCSourceTextPosition) {
         self.lines = buffer.lines.compactMap { $0 as? String }

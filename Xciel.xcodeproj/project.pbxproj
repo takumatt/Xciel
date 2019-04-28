@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C4149AC5227604280093FEA7 /* CielOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4149AC4227604280093FEA7 /* CielOptions.swift */; };
 		C45774622260285200EFEC14 /* BracketType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45774612260285200EFEC14 /* BracketType.swift */; };
 		C4AC96FE223E8B2F00BEE085 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AC96FD223E8B2F00BEE085 /* AppDelegate.swift */; };
 		C4AC9700223E8B3000BEE085 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C4AC96FF223E8B3000BEE085 /* Assets.xcassets */; };
@@ -63,6 +64,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		C4149AC4227604280093FEA7 /* CielOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CielOptions.swift; sourceTree = "<group>"; };
 		C45774612260285200EFEC14 /* BracketType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BracketType.swift; sourceTree = "<group>"; };
 		C4AC96FA223E8B2F00BEE085 /* Xciel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Xciel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4AC96FD223E8B2F00BEE085 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -192,6 +194,7 @@
 				C4AC973D223E8B9000BEE085 /* XCSourceTextBuffer+Util.swift */,
 				C4AC9741223E8BD400BEE085 /* XCSourceTextPosition+Util.swift */,
 				C4D756C222524DDE0098197C /* String+Comment.swift */,
+				C4149AC4227604280093FEA7 /* CielOptions.swift */,
 				C4AC9743223E8BF800BEE085 /* Stack.swift */,
 				C45774612260285200EFEC14 /* BracketType.swift */,
 				C4AC9734223E8B3700BEE085 /* Info.plist */,
@@ -389,6 +392,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C4AC9731223E8B3700BEE085 /* SourceEditorExtension.swift in Sources */,
+				C4149AC5227604280093FEA7 /* CielOptions.swift in Sources */,
 				C4AC973E223E8B9000BEE085 /* XCSourceTextBuffer+Util.swift in Sources */,
 				C45774622260285200EFEC14 /* BracketType.swift in Sources */,
 				C4AC9733223E8B3700BEE085 /* SourceEditorCommand.swift in Sources */,
